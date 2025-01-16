@@ -6,12 +6,17 @@ books = []
 #list containing all authors
 authors = {}
 
+#list containing corresponding values of books to authors
+nums = []
+
 #add book function
 def add_book():
     book_name = input("What is the name of the book you want to add?\n-->")
     author = input("What is the name of the author of the book?\n-->")
     books.append(book_name.lower())
-    author.add(author)
+    if author in authors:
+        nums.append(authors.index(author))
+    authors.add(author)
 
 #remove book function
 def remove_book():
@@ -44,7 +49,20 @@ def search():
                     num += 1
                     searched_books.append(book)
             print(f"{num} results for {book_search}:")
-                            
+            print("\n".join(searched_books))
+            break
+        elif type_of_search == "2":
+            author_search = input("What is the name of the author?\n--> ")
+            num2 = 0
+            searched_authors = []
+            for author in authors:
+                if author_search in author:
+                    num2 += 1
+                    searched_authors.append(author)
+            print(f"{num2} results for {author_search}:")
+            print("\n".join(searched_authors))
+            which_author = input("Type the number that is by the author whose books you want to look at.\n-->")
+            
 #User Interface function
 def main():
     print("Welcome to the Online Personal Libary for Books!")
@@ -57,3 +75,5 @@ def main():
             add_book()
         elif choice == "2":
             remove_book()
+
+main()
