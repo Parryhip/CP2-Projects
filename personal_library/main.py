@@ -40,15 +40,18 @@ def search():
             book_search = input("What is the name of the book you want to search for?\n-->")
             num = 0
             searched_books = []
+            string_stuff = []
             for book in library:
                 for item in book:
                     if book_search.lower() in item:
                         num += 1
                         searched_books.append(book)
             print(f"{num} results for {book_search}:")
-            for i in library:
-                string_stuff = ", ".join(library(i))
-            print("\n".join(string_stuff))
+            for book in library:
+                string_stuff.append(book[1])
+                
+            string_stuff = "".join(book[0])
+            print(string_stuff)
             break
         elif type_of_search == "2":
             author_search = input("What is the name of the author?\n--> ")
