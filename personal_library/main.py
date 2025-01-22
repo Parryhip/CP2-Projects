@@ -18,19 +18,19 @@ def remove_book():
         print("These are the names of all of the books that you have: ")
         num = 1
         for book in library:
-            for item in book:
-                print(f"{num}. {book}")
-                num += 1
+            print(f"{num}.'{book[0]}' by the author '{book[1]}'")
+            num += 1
         book_name = input("What is the name of the book you want to remove? (Or type 1 for exit)\n-->")
         for book in library:
             if book_name in book:
                 library.remove(book)
                 print(f"Removed {book_name}.")
-                break
+                return
             elif book_name == "1":
-                break
+                return
             else:
-                print("That is not an item in your library!")
+                pass
+        
 
 #search library function
 def search():
@@ -40,32 +40,50 @@ def search():
             book_search = input("What is the name of the book you want to search for?\n-->")
             num = 0
             searched_books = []
-            string_stuff = []
             for book in library:
                 for item in book:
-                    if book_search.lower() in item:
+                    if book_search in item:
                         num += 1
                         searched_books.append(book)
             print(f"{num} results for {book_search}:")
-            for book in library:
-                string_stuff.append(book[1])
-                
-            string_stuff = "".join(book[0])
-            print(string_stuff)
-            break
+            num2 = 1
+            for i in searched_books:
+                print(f"{num2}.'{i[0]}' by the author '{i[1]}'")
+                num2 += 1
+            
         elif type_of_search == "2":
             author_search = input("What is the name of the author?\n--> ")
-            num2 = 0
+            num3 = 0
             searched_authors = []
             for book in library:
-                for author in book:
-                    if author_search in author:
-                        num2 += 1
-                        searched_authors.append(author)
-            print(f"{num2} results for {author_search}:")
-            print("\n".join(searched_authors))
-            which_author = input("Type the number that is by the author whose books you want to look at.\n-->")
-
+                if author_search in book[1]:
+                    num3 += 1
+                    searched_authors.append(book[1])
+            print(f"{num3} results for {author_search}:")
+            if num3 == 0:
+                return
+            num3 = 1
+            for item in searched_authors:
+                print(f"{num3}.{item}")
+                num3 += 1
+            while True:
+                which_author = input("Type the number that is by the author whose books you want to look at.\n-->")
+                try:
+                    test = int(which_author)
+                    test2 = searched_authors[int(which_author)-1]
+                    break
+                except:
+                    print("Not a valid input!")
+            bookstoprint = []
+            
+            for book in library:
+                if searched_authors[int(which_author)-1] == book[1]:
+                    bookstoprint.append(book[0])
+            print(f"Here are the books made by the author {searched_authors[int(which_author)-1]}")
+            num4 = 1
+            for book in bookstoprint:
+                print(f"{num4}.{book}")
+                num4 += 1
         elif type_of_search == "3":
             break
 #User Interface function
