@@ -1,7 +1,7 @@
 #Samuel Andelin, Personal Library Program
 
 #list containing all books corrresponding to their authors
-library = set({})
+library = []
 
 #list containing corresponding values of books to authors
 nums = []
@@ -10,7 +10,19 @@ nums = []
 def add_book():
     book_name = input("What is the name of the book you want to add?\n-->")
     author = input("What is the name of the author of the book?\n-->")
-    library.add((book_name, author))
+    while True:
+        pages = input("How many pages are in this book?\n-->")
+        try:
+            test = int(pages)
+            break
+        except:
+            print("Not a valid number of pages!")
+    genre = input("What genre is this book?\n-->")
+    library.append({"name" : book_name,  
+                    "author" : author,
+                    "pages" : pages,
+                    "genre" : genre,
+                    })
 
 #remove book function
 def remove_book():
@@ -18,11 +30,11 @@ def remove_book():
         print("These are the names of all of the books that you have: ")
         num = 1
         for book in library:
-            print(f"{num}.'{book[0]}' by the author '{book[1]}'")
+            print(f"{num}.'{book["name"]}' by the author '{book["author"]}'")
             num += 1
         book_name = input("What is the name of the book you want to remove? (Or type 1 for exit)\n-->")
         for book in library:
-            if book_name in book:
+            if book_name in book["name"]:
                 library.remove(book)
                 print(f"Removed {book_name}.")
                 return
@@ -30,6 +42,7 @@ def remove_book():
                 return
             else:
                 pass
+        print("Not a valid book name!")
         
 
 #search library function
@@ -42,7 +55,7 @@ def search():
             searched_books = []
             for book in library:
                 for item in book:
-                    if book_search in item:
+                    if book_search in item[0]:
                         num += 1
                         searched_books.append(book)
             print(f"{num} results for {book_search}:")
@@ -86,13 +99,22 @@ def search():
                 num4 += 1
         elif type_of_search == "3":
             break
+
+#view library function
+def view():
+    print("Here is your library: ")
+    num = 1
+    for book in library:
+        print(f"{num}. \nname: {book["name"]}\nauthor: {book["author"]}\npages: {book["pages"]}\ngenre: {book["genre"]}")
+        num += 1       
+        
 #User Interface function
 def main():
     print("Welcome to the Online Personal Libary for Books!")
     while True:
         print("What do you want to do?")
         #asks user for what they want to do
-        choice = input("Type 1 to add a book to the library,\nType 2 to remove a book from the library\nType 3 to search for a book,\n And type 4 to exit.\n-->")
+        choice = input("Type 1 to add a book to the library,\nType 2 to remove a book from the library\nType 3 to search for a book,\nType 4 to view your whole library,\nAnd type 5 to exit.\n-->")
         #if the user wants to add a book
         if choice == "1":
             add_book()
@@ -101,6 +123,8 @@ def main():
         elif choice == "3":
             search()
         elif choice == "4":
+            view()
+        elif choice == "5":
             print("Ok, bye!")
             break
         else:
