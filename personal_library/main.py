@@ -103,11 +103,24 @@ def search():
 
 #view library function
 def view():
-    print("Here is your library: ")
-    num = 1
-    for book in library:
-        print(f"{num}. \nname: {book["name"]}\nauthor: {book["author"]}\npages: {book["pages"]}\ngenre: {book["genre"]}\n")
-        num += 1       
+    while True:
+        choice = input("Type 1 if you want to see the library simplified, type 2 if you want to see all details, type 3 if you want to exit.\n-->")
+        if choice == "1":
+            print("Here is your library: ")
+            num = 1
+            for book in library:
+                print(f"{num}. \nname: {book["name"]}\nauthor: {book["author"]}\n")
+                num += 1       
+        elif choice == "2":
+            print("Here is your library: ")
+            num = 1
+            for book in library:
+                print(f"{num}. \nname: {book["name"]}\nauthor: {book["author"]}\npages: {book["pages"]}\ngenre: {book["genre"]}\n")
+                num += 1       
+        elif choice == "3":
+            break
+        else:
+            print("Invalid choice!")
         
 #User Interface function
 def main():
