@@ -86,7 +86,6 @@ def search():
                 num4 += 1
         elif type_of_search == "3":
             break
-
 #User Interface function
 def main():
     print("Welcome to the Online Personal Libary for Books!")
