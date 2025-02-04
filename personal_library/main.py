@@ -54,14 +54,13 @@ def search():
             num = 0
             searched_books = []
             for book in library:
-                for item in book:
-                    if book_search in item[0]:
-                        num += 1
-                        searched_books.append(book)
+                if book_search in book["name"]:
+                    num += 1
+                    searched_books.append(book)
             print(f"{num} results for {book_search}:")
             num2 = 1
             for i in searched_books:
-                print(f"{num2}.'{i[0]}' by the author '{i[1]}'")
+                print(f"{num2}.'{i["name"]}' by the author '{i["author"]}'")
                 num2 += 1
             
         elif type_of_search == "2":
@@ -69,9 +68,9 @@ def search():
             num3 = 0
             searched_authors = []
             for book in library:
-                if author_search in book[1]:
+                if author_search in book["author"]:
                     num3 += 1
-                    searched_authors.append(book[1])
+                    searched_authors.append(book["author"])
             print(f"{num3} results for {author_search}:")
             if num3 == 0:
                 return
@@ -90,8 +89,8 @@ def search():
             bookstoprint = []
             
             for book in library:
-                if searched_authors[int(which_author)-1] == book[1]:
-                    bookstoprint.append(book[0])
+                if searched_authors[int(which_author)-1] == book["author"]:
+                    bookstoprint.append(book["name"])
             print(f"Here are the books made by the author {searched_authors[int(which_author)-1]}")
             num4 = 1
             for book in bookstoprint:
@@ -99,13 +98,15 @@ def search():
                 num4 += 1
         elif type_of_search == "3":
             break
+        else:
+            print("Not a valid choice!")
 
 #view library function
 def view():
     print("Here is your library: ")
     num = 1
     for book in library:
-        print(f"{num}. \nname: {book["name"]}\nauthor: {book["author"]}\npages: {book["pages"]}\ngenre: {book["genre"]}")
+        print(f"{num}. \nname: {book["name"]}\nauthor: {book["author"]}\npages: {book["pages"]}\ngenre: {book["genre"]}\n")
         num += 1       
         
 #User Interface function
