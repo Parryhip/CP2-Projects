@@ -4,7 +4,7 @@
 all_letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '', ' ']
 
 #list of all morse code letters in order
-all_morse_code_letters = ['.-','-...','-.-.','-..','.','..-.','--.','....','..','.---','-.-','.-..','--','-.','---','.--.','--.-','.-.','...','-','..-','...-','.--','-..-','-.--','--..', '/', ' / ']
+all_morse_code_letters = ['.-','-...','-.-.','-..','.','..-.','--.','....','..','.---','-.-','.-..','--','-.','---','.--.','--.-','.-.','...','-','..-','...-','.--','-..-','-.--','--..', '/', ' ']
 
 #function to change morse code to english
 def morse_to_english():
@@ -22,8 +22,11 @@ def morse_to_english():
     for i in message:
         #if the user is adding a space between words
         if i == " ":
-            #decodes and adds the current letter
-            new_message.append(all_letters[all_morse_code_letters.index("".join(current_letter))])
+            try:
+                #decodes and adds the current letter
+                new_message.append(all_letters[all_morse_code_letters.index("".join(current_letter))])
+            except:
+                return "bad message"
             #sets the current letter to decode to be an empty list
             current_letter = []
             #adds a space to go between words
@@ -80,7 +83,8 @@ def main():
         if choice == "1":
             morse_to_english()
         elif choice == "2":
-            english_to_morse()
+            if english_to_morse() == "bad message":
+                print("There was a problem with your message!")
         elif choice == "3":
             break
         else:
