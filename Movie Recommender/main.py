@@ -24,100 +24,17 @@ def read():
 #calling the reading function
 read()
 
+#add filter function
+def add_filter():
+    which_filter = input("Type 1 to add the title filter, \ntype 2 to add the director filter, \ntype 3 to add the genre filter, \ntype 4 to add the rating filter, \ntype 5 to add to the length filter, \ntype 6 to add the notable actors filter, \nand type 7 to exit.")
+
+
+
 #search function
 def search():
-    while True:
-        possible_criteria = ["Title", "Director", "Genre", "Rating", "Notable Actors"]
-        criteria_num = input("How many criteria do you want to search by? (Out of title, director, genre, rating, length, and notable actors) (or type exit to exit)\n-->")
-        if criteria_num == "exit":
-            return
-        try:
-            test = int(criteria_num)
-        except:
-            print("Not a number! Please type between 1-6.")
-            continue
-        if int(criteria_num) > 6 or int(criteria_num) < 1:
-            print("Invalid number of criteria. Please type between 1-6.")
-            continue
-        while True:
-            criterias = []
-            num = 0
-            for i in range(int(criteria_num)):
-                criteria = input("What is the name of the criteria that you want to search for? (Out of title, director, genre, rating, length, and notable actors) (or type exit to exit)\n-->")
-                if criteria == "exit":
-                    return
-                if criteria.capitalize() in possible_criteria and criteria.capitalize() not in criterias:
-                    criterias.append(criteria)
-                else:
-                    num += 1
-                    break
-            if num == 0:
-                break
-            else:
-                print("Not a valid criteria!")
-                continue
-        searches = []
-        for item in criterias:
-            if item.capitalize == "Notable Actors":
-                specific_search = input("What are the notable actors that you want to search for? (Input as a comma seperated list)\n-->")
-                searches.append((item.capitalize(), specific_search.split(",")))
-            else:
-                specific_search = input(f"What is the {item} that you want to search for?\n-->")
-                searches.append((item.capitalize(), specific_search))
-        print("Here are the movies with: ")
-        num2 = 0
-        for item2 in searches:
-            print(f"{item2[0]} of {item2[1]}")
-            if "Title" in item2:
-                num2 +=1
-        for movietoprint in movies: 
-            if num2 > 0:
-                print("test")
-                valid = False
-                for search in searches:
-                    if "Title" in search:
-                        for movie in movies:
-                            if search[1] in movies.keys():
-                                current_movie = movie
-                                valid = True
-                                breakout = True
-                                searches.remove(search)
-                                break
-                            else:
-                                breakout = False
-                    if breakout:
-                        break
-                so_far_so_good = True
-                if valid:
-                    for search in searches:
-                        for movie in movies:
-                            if search[0] == "Notable Actors":
-                                for actor in search[1]:
-                                    if actor in movie["Notable Actors"]:
-                                        pass
-                            elif search[1] in movie[search[0]]:
-                                pass
-                            else:
-                                so_far_so_good = False
-
-                else:
-                    so_far_so_good = False
-                
-            else:
-                print(movietoprint.keys())
-                so_far_so_good = True
-                for search in searches:
-                    for movie in movies:
-                        if search[0] == "Notable Actors":
-                            for actor in search[1]:
-                                if actor in movie["Notable Actors"]:
-                                    pass
-                        elif search[1] in movie[search[0]]:
-                            pass
-                        else:
-                            so_far_so_good = False
-            if so_far_so_good:
-                print(movietoprint)
+    choice = input("Type 1 to add a filter, type 2 to remove a filter, type 3 to view the movies with the filters, and type 4 to exit.\n-->")
+    if choice == "1":
+        add_filter()
 
 #view function
 def view():
