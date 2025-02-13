@@ -27,8 +27,10 @@ read()
 #search function
 def search():
     while True:
-        possible_criteria = ["title", "director", "genre", "rating", "notable actors"]
+        possible_criteria = ["Title", "Director", "Genre", "Rating", "Notable Actors"]
         criteria_num = input("How many criteria do you want to search by? (Out of title, director, genre, rating, length, and notable actors) (or type exit to exit)\n-->")
+        if criteria_num == "exit":
+            return
         try:
             test = int(criteria_num)
         except:
@@ -38,13 +40,14 @@ def search():
             print("Invalid number of criteria. Please type between 1-6.")
             continue
         while True:
+            criterias = []
+            num = 0
             for i in range(int(criteria_num)):
-                criterias = []
                 criteria = input("What is the name of the criteria that you want to search for? (Out of title, director, genre, rating, length, and notable actors) (or type exit to exit)\n-->")
                 if criteria == "exit":
                     return
                 if criteria.capitalize() in possible_criteria and criteria.capitalize() not in criterias:
-                    criterias.append("criteria")
+                    criterias.append(criteria)
                 else:
                     num += 1
                     break
@@ -67,37 +70,66 @@ def search():
             print(f"{item2[0]} of {item2[1]}")
             if "Title" in item2:
                 num2 +=1
-        if num2 > 0:
-            valid = False
-            for search in searches:
-                if "Title" in search:
-                    for movie in movies:
-                        if search[1] in movie.keys():
-                            current_movie = movie
-                            valid = True
-                            breakout = True
-                            searches.remove(search)
-                            break
-                        else:
-                            breakout = False
-                if breakout:
-                    break
-            if valid:
+        for movietoprint in movies: 
+            if num2 > 0:
+                print("test")
+                valid = False
+                for search in searches:
+                    if "Title" in search:
+                        for movie in movies:
+                            if search[1] in movies.keys():
+                                current_movie = movie
+                                valid = True
+                                breakout = True
+                                searches.remove(search)
+                                break
+                            else:
+                                breakout = False
+                    if breakout:
+                        break
+                so_far_so_good = True
+                if valid:
+                    for search in searches:
+                        for movie in movies:
+                            if search[0] == "Notable Actors":
+                                for actor in search[1]:
+                                    if actor in movie["Notable Actors"]:
+                                        pass
+                            elif search[1] in movie[search[0]]:
+                                pass
+                            else:
+                                so_far_so_good = False
+
+                else:
+                    so_far_so_good = False
+                
+            else:
+                print(movietoprint.keys())
+                so_far_so_good = True
                 for search in searches:
                     for movie in movies:
                         if search[0] == "Notable Actors":
+                            for actor in search[1]:
+                                if actor in movie["Notable Actors"]:
+                                    pass
+                        elif search[1] in movie[search[0]]:
                             pass
-                            if search[1] in movie[search[0]]:
-                                pass
+                        else:
+                            so_far_so_good = False
+            if so_far_so_good:
+                print(movietoprint)
 
-            else:
-                pass
-            
-        else:
-            pass
-
-            
-
+#view function
+def view():
+    print("Here are all of your movies:")
+    num = 0
+    for movie in movies:
+        print(f"{movie}: ")
+        for key, value in movies.items():
+            print(key)
+            for item in list(key.items()):
+                print(item)
+        num += 1
 
 #main function
 def main():
@@ -106,6 +138,10 @@ def main():
         choice = input("Type 1 to search, Type 2 to view the whole list, and type 3 to exit.\n-->")
         if choice == "1":
             search()
+        elif choice == "2":
+            view()
+        elif choice == "3":
+            break
 
 #calling of the main/user interface function
 main()
