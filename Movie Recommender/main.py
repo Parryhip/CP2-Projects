@@ -101,17 +101,28 @@ def remove_filter():
                     print(f"{num}: {filter[1]}")
                     num += 1
             while True:
-                try:
-                    filter_to_delete = int(input("Type the number by the filter that you want to delete.\n-->"))
-                except:
-                    print("Not a number!!!")
-                    continue
+                good_to_go = False
+                filter_to_delete = input("Type the number by the filter that you want to delete. (Or type exit to exit)\n-->")
+                if filter_to_delete == "exit":
+                    break
+                else:
+                    try:
+                        filter_to_delete = int(filter_to_delete)
+                    except:
+                        print("Invalid input!")
+                        continue
                 for filter in filters:
                     if filter[0] == "Title":
                         filter_to_delete -= 1
                         if filter_to_delete == 0:
-                            
+                            filters.remove(filter)
                             good_to_go = True
+                            break
+                if good_to_go:
+                    print("Filter succesfully deleted!")
+                    break
+                else:
+                    print("Not a valid choice!!!")
         elif which_filter == "2":
             num = 1
             print("Here are all of the director filters that you have:")
@@ -119,6 +130,29 @@ def remove_filter():
                 if filter[0] == "Director":
                     print(f"{num}: {filter[1]}")
                     num += 1
+            while True:
+                good_to_go = False
+                filter_to_delete = input("Type the number by the filter that you want to delete. (Or type exit to exit)\n-->")
+                if filter_to_delete == "exit":
+                    break
+                else:
+                    try:
+                        filter_to_delete = int(filter_to_delete)
+                    except:
+                        print("Invalid input!")
+                        continue
+                for filter in filters:
+                    if filter[0] == "Director":
+                        filter_to_delete -= 1
+                        if filter_to_delete == 0:
+                            filters.remove(filter)
+                            good_to_go = True
+                            break
+                if good_to_go:
+                    print("Filter succesfully deleted!")
+                    break
+                else:
+                    print("Not a valid choice!!!")
         elif which_filter == "3":
             num = 1
             print("Here are all of the genre filters that you have:")
@@ -126,6 +160,29 @@ def remove_filter():
                 if filter[0] == "Genre":
                     print(f"{num}: {filter[1]}")
                     num += 1
+            while True:
+                good_to_go = False
+                filter_to_delete = input("Type the number by the filter that you want to delete. (Or type exit to exit)\n-->")
+                if filter_to_delete == "exit":
+                    break
+                else:
+                    try:
+                        filter_to_delete = int(filter_to_delete)
+                    except:
+                        print("Invalid input!")
+                        continue
+                for filter in filters:
+                    if filter[0] == "Genre":
+                        filter_to_delete -= 1
+                        if filter_to_delete == 0:
+                            filters.remove(filter)
+                            good_to_go = True
+                            break
+                if good_to_go:
+                    print("Filter succesfully deleted!")
+                    break
+                else:
+                    print("Not a valid choice!!!")
         elif which_filter == "4":
             num = 1
             print("Here are all of the rating filters that you have:")
@@ -133,6 +190,29 @@ def remove_filter():
                 if filter[0] == "Rating":
                     print(f"{num}: {filter[1]}")
                     num += 1
+            while True:
+                good_to_go = False
+                filter_to_delete = input("Type the number by the filter that you want to delete. (Or type exit to exit)\n-->")
+                if filter_to_delete == "exit":
+                    break
+                else:
+                    try:
+                        filter_to_delete = int(filter_to_delete)
+                    except:
+                        print("Invalid input!")
+                        continue
+                for filter in filters:
+                    if filter[0] == "Rating":
+                        filter_to_delete -= 1
+                        if filter_to_delete == 0:
+                            filters.remove(filter)
+                            good_to_go = True
+                            break
+                if good_to_go:
+                    print("Filter succesfully deleted!")
+                    break
+                else:
+                    print("Not a valid choice!!!")
         elif which_filter == "5":
             num = 1
             print("Here are all of the length filters that you have:")
@@ -140,6 +220,29 @@ def remove_filter():
                 if filter[0] == "Length":
                     print(f"{num}: {filter[1]}")
                     num += 1
+            while True:
+                good_to_go = False
+                filter_to_delete = input("Type the number by the filter that you want to delete. (Or type exit to exit)\n-->")
+                if filter_to_delete == "exit":
+                    break
+                else:
+                    try:
+                        filter_to_delete = int(filter_to_delete)
+                    except:
+                        print("Invalid input!")
+                        continue
+                for filter in filters:
+                    if filter[0] == "Length":
+                        filter_to_delete -= 1
+                        if filter_to_delete == 0:
+                            filters.remove(filter)
+                            good_to_go = True
+                            break
+                if good_to_go:
+                    print("Filter succesfully deleted!")
+                    break
+                else:
+                    print("Not a valid choice!!!")
         elif which_filter == "6":
             num = 1
             print("Here are all of the notable actor filters that you have:")
@@ -147,12 +250,37 @@ def remove_filter():
                 if filter[0] == "Notable Actor":
                     print(f"{num}: {filter[1]}")
                     num += 1
+            while True:
+                good_to_go = False
+                filter_to_delete = input("Type the number by the filter that you want to delete. (Or type exit to exit)\n-->")
+                if filter_to_delete == "exit":
+                    break
+                else:
+                    try:
+                        filter_to_delete = int(filter_to_delete)
+                    except:
+                        print("Invalid input!")
+                        continue
+                for filter in filters:
+                    if filter[0] == "Notable Actor":
+                        filter_to_delete -= 1
+                        if filter_to_delete == 0:
+                            filters.remove(filter)
+                            good_to_go = True
+                            break
+                if good_to_go:
+                    print("Filter succesfully deleted!")
+                    break
+                else:
+                    print("Not a valid choice!!!")
         elif which_filter == "7":
             return
 
 #viewing the movies with the filters function
 def view_with_filters():
-    pass
+    for movie in movies:
+        for filter in filters:
+            pass
 
 #search function
 def search():
@@ -172,14 +300,9 @@ def search():
 #view function
 def view():
     print("Here are all of your movies:")
-    num = 0
     for movie in movies:
-        print(f"{movie}: ")
-        for key, value in movies.items():
-            print(key)
-            for item in list(key.items()):
-                print(item)
-        num += 1
+       print(f"----------------------------{movie}---------------------------")
+       print(movie.values())
 
 #main function
 def main():
