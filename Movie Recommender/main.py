@@ -76,16 +76,14 @@ def add_filter():
         elif which_filter == "6":
             while True:
                 actors = input("What is the name of the notable actor that you want to search for?\n-->")
-                filters.append("Notable Actor", actors)
+                filters.append(("Notable Actor", actors))
+                break
         elif which_filter == "7":
             return
 
 #function to remove a filter
 def remove_filter():
     while True:
-        print("Here are all of your filters so far:")
-        for filter in filters:
-            print(f"{filter[0]}: {filter[1]}")
         print("Here are all of your filters so far:")
         for filter in filters:
             print(f"{filter[0]}: {filter[1]}")
@@ -96,42 +94,54 @@ def remove_filter():
             print("Please type a number!")
             continue
         if which_filter ==  "1":
-            num = 0
+            num = 1
             print("Here are all of the title filters that you have:")
             for filter in filters:
                 if filter[0] == "Title":
                     print(f"{num}: {filter[1]}")
                     num += 1
+            while True:
+                try:
+                    filter_to_delete = int(input("Type the number by the filter that you want to delete.\n-->"))
+                except:
+                    print("Not a number!!!")
+                    continue
+                for filter in filters:
+                    if filter[0] == "Title":
+                        filter_to_delete -= 1
+                        if filter_to_delete == 0:
+                            
+                            good_to_go = True
         elif which_filter == "2":
-            num = 0
+            num = 1
             print("Here are all of the director filters that you have:")
             for filter in filters:
                 if filter[0] == "Director":
                     print(f"{num}: {filter[1]}")
                     num += 1
         elif which_filter == "3":
-            num = 0
+            num = 1
             print("Here are all of the genre filters that you have:")
             for filter in filters:
                 if filter[0] == "Genre":
                     print(f"{num}: {filter[1]}")
                     num += 1
         elif which_filter == "4":
-            num = 0
+            num = 1
             print("Here are all of the rating filters that you have:")
             for filter in filters:
                 if filter[0] == "Rating":
                     print(f"{num}: {filter[1]}")
                     num += 1
         elif which_filter == "5":
-            num = 0
+            num = 1
             print("Here are all of the length filters that you have:")
             for filter in filters:
                 if filter[0] == "Length":
                     print(f"{num}: {filter[1]}")
                     num += 1
         elif which_filter == "6":
-            num = 0
+            num = 1
             print("Here are all of the notable actor filters that you have:")
             for filter in filters:
                 if filter[0] == "Notable Actor":
