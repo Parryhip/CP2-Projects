@@ -8,9 +8,11 @@ movies = {}
 
 #function to push all of the movies into a readable dictionary
 def read():
+    #opening the csv file for all of the movies
     with open("Movie Recommender/Movies list.csv", "r") as file:
         csv_reader = csv.reader(file)
         next(csv_reader)
+        #adding a dictionary per movie to the movie database
         for row in csv_reader:
             dictionary_to_push = {row[0]:{  
                                 "Director" : row[1],
@@ -30,15 +32,18 @@ filters = []
 #add filter function
 def add_filter():
     while True:
+        #displays current filters
         print("Here are all of your filters so far:")
         for filter in filters:
             print(f"{filter[0]}: {filter[1]}")
+        #asks which filter to add
         which_filter = input("Type 1 to add the title filter, \ntype 2 to add the director filter, \ntype 3 to add the genre filter, \ntype 4 to add the rating filter, \ntype 5 to add to the length filter, \ntype 6 to add the notable actors filter, \nand type 7 to exit.")
         try:
             test = int(which_filter)
         except:
             print("Please type a number!")
             continue
+        #asks for each filter specification
         if which_filter ==  "1":
             title = input("What is the name of the title that you want to search by?\n-->")
             filters.append(("Title", title))
@@ -84,15 +89,21 @@ def add_filter():
 #function to remove a filter
 def remove_filter():
     while True:
+        #prints all filters
         print("Here are all of your filters so far:")
         for filter in filters:
             print(f"{filter[0]}: {filter[1]}")
+        #asks which filter to remove
         which_filter = input("Type 1 to remove the title filter, \ntype 2 to remove the director filter, \ntype 3 to remove the genre filter, \ntype 4 to remove the rating filter, \ntype 5 to remove to the length filter, \ntype 6 to remove the notable actors filter, \nand type 7 to exit.")
         try:
             test = int(which_filter)
         except:
             print("Please type a number!")
             continue
+        
+        #This section displays all of the filters in each of the categories.
+        #The user picks the number next to the specific filter that they want to delete in the specific category
+        
         if which_filter ==  "1":
             num = 1
             print("Here are all of the title filters that you have:")
@@ -278,10 +289,15 @@ def remove_filter():
 
 #viewing the movies with the filters function
 def view_with_filters():
+    #creates a new list contaning all of the movies originally 
     possible_movies = [movie_title for movie_title in movies]
-
+    #iterates over all of the filters
     for filter in filters:
+        #sets a specific value to the attributes of each filter
         filter_type, filter_value = filter
+
+        #this section filters down the possible movies for each type of filter
+
         if filter_type == "Title":
             possible_movies = [movie for movie in possible_movies if filter_value.lower() in movie.lower()]
         elif filter_type == "Length":
@@ -299,7 +315,9 @@ def view_with_filters():
     if possible_movies:
         for movie_title in possible_movies:
             print(f"---------------------------- {movie_title} ----------------------------")
+            #iterates over each attribute, value pair in each movie
             for attribute, values in movies[movie_title].items():
+                #checks if the value is a list and joins it if it is
                 if isinstance(values, list):
                     print(f"{attribute}: {', '.join(values)}")
                 else:
@@ -310,6 +328,7 @@ def view_with_filters():
 #search function
 def search():
     while True:
+        #asks user if they want to add a filter, remove one, or vie the movies with the filters
         choice = input("Type 1 to add a filter, type 2 to remove a filter, type 3 to view the movies with the filters, and type 4 to exit.\n-->")
         if choice == "1":
             add_filter()
@@ -324,6 +343,7 @@ def search():
 
 #view function
 def view():
+    #prints all of the movies
     print("Here are all of your movies:")
     for movie_title, attributes in movies.items(): 
         print(f"---------------------------- {movie_title} ----------------------------")
