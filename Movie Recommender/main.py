@@ -8,7 +8,7 @@ movies = {}
 
 #function to push all of the movies into a readable dictionary
 def read():
-    with open("Movie Recommender\Movies list.csv", "r") as file:
+    with open("Movie Recommender/Movies list.csv", "r") as file:
         csv_reader = csv.reader(file)
         next(csv_reader)
         for row in csv_reader:
@@ -278,9 +278,34 @@ def remove_filter():
 
 #viewing the movies with the filters function
 def view_with_filters():
-    for movie in movies:
-        for filter in filters:
-            pass
+    possible_movies = [movie_title for movie_title in movies]
+
+    for filter in filters:
+        filter_type, filter_value = filter
+        if filter_type == "Title":
+            possible_movies = [movie for movie in possible_movies if filter_value.lower() in movie.lower()]
+        elif filter_type == "Length":
+            possible_movies = [movie for movie in possible_movies if filter_value[0] <= int(movies[movie]["Length"]) <= filter_value[1]]
+        elif filter_type == "Rating":
+            possible_movies = [movie for movie in possible_movies if movies[movie]["Rating"] == filter_value]
+        elif filter_type == "Director":
+            possible_movies = [movie for movie in possible_movies if filter_value.lower() in movies[movie]["Director"].lower()]
+        elif filter_type == "Genre":
+            possible_movies = [movie for movie in possible_movies if filter_value.lower() in movies[movie]["Genre"].lower()]
+        elif filter_type == "Notable Actor":
+            possible_movies = [movie for movie in possible_movies if any(filter_value.lower() in actor.lower() for actor in movies[movie]["Notable Actors"])]
+
+    print("Here are all of the movies with your filters applied:")
+    if possible_movies:
+        for movie_title in possible_movies:
+            print(f"---------------------------- {movie_title} ----------------------------")
+            for attribute, values in movies[movie_title].items():
+                if isinstance(values, list):
+                    print(f"{attribute}: {', '.join(values)}")
+                else:
+                    print(f"{attribute}: {values}")
+    else:
+        print("No movies found with the applied filters.")
 
 #search function
 def search():
@@ -300,9 +325,13 @@ def search():
 #view function
 def view():
     print("Here are all of your movies:")
-    for movie in movies:
-       print(f"----------------------------{movie}---------------------------")
-       print(movie.values())
+    for movie_title, attributes in movies.items(): 
+        print(f"---------------------------- {movie_title} ----------------------------")
+        for attribute, values in attributes.items():  
+            if isinstance(values, list):  
+                print(f"{attribute}: {', '.join(values)}")
+            else:
+                print(f"{attribute}: {values}")
 
 #main function
 def main():
@@ -314,6 +343,7 @@ def main():
         elif choice == "2":
             view()
         elif choice == "3":
+            print("Ok, bye!")
             break
 
 #calling of the main/user interface function
