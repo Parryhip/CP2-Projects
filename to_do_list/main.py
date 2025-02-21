@@ -7,7 +7,8 @@ items_to_do =  []
 def read():
     with open("to_do_list\\list.txt","r") as file:
         for line in file:
-            items_to_do.append([line[0], line[1]])
+            line_to_push = line.split(":")
+            items_to_do.append([line_to_push[0], line_to_push[1]])
 
 #call the read function every time the program starts
 read()
@@ -19,18 +20,17 @@ def add():
         if item_to_add.lower() == "exit":
             print("Please don't use that name O-O.")
             continue
-        items_to_do.append("\n")
         items_to_do.append([item_to_add, "Incomplete"])
         with open("to_do_list\\list.txt", "w") as file:
             file.write("")
         with open("to_do_list\\list.txt", "a+") as file:
-            for item in file:
+            for item in items_to_do:
                 try:
-                    file.append([item[0], item[1]])
-                    file.append("\n")
+                    file.write(f"{item[0]}:{item[1]}")
+                    file.write("\n")
                 except:
-                    file.append([item[0], "Incomplete"])
-                    file.append("\n")
+                    file.write(f"{item[0]}:{"Incomplete"}")
+                    file.write("\n")
         print("Successfully added!")
         break
 
@@ -39,7 +39,6 @@ def remove():
     while True:
         num = 0
         print("This is your to do list:")
-        print(items_to_do)
         for item in items_to_do:
             print(f"{item[0]}: {item[1]}")
         item_to_remove = input("What is the name of the item that you want to remove?(or type exit to exit)\n-->")
@@ -54,13 +53,13 @@ def remove():
             with open("to_do_list\\list.txt", "w") as file:
                 file.write("")
             with open("to_do_list\\list.txt", "a+") as file:
-                for item in file:
+                for item in items_to_do:
                     try:
-                        file.append([item[0], item[1]])
-                        file.append("\n")
+                        file.write(f"{item[0]}:{item[1]}")
+                        file.write("\n")
                     except:
-                        file.append([item[0], "Incomplete"])
-                        file.append("\n")
+                        file.write(f"{item[0]}:{"Incomplete"}")
+                        file.write("\n")
             print("Item successfully deleted!")
             break
         else:
@@ -97,13 +96,13 @@ def update():
             with open("to_do_list\\list.txt", "w") as file:
                 file.write("")
             with open("to_do_list\\list.txt", "a+") as file:
-                for item in file:
+                for item in items_to_do:
                     try:
-                        file.append([item[0], item[1]])
-                        file.append("\n")
+                        file.write(f"{item[0]}:{item[1]}")
+                        file.write("\n")
                     except:
-                        file.append([item[0], "Incomplete"])
-                        file.append("\n")
+                        file.write(f"{item[0]}:{"Incomplete"}")
+                        file.write("\n")
             print("Item successfully updated!")
             break
         else:
@@ -132,6 +131,7 @@ def main():
             view()
         elif choice == "5":
             print("Bye!")
+            break
         else:
             print("Invalid input.")
             continue
