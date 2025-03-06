@@ -7,10 +7,9 @@ import random
 #importing neccessary functions
 from combat import combat
 from combat import compcombat
+from sign_in import sign_in
 
-#dictionaries for player and enemy stats, and room memory
-doors = ["north", "east", "south", "west"]
-currentdoors = []
+#lists/dictionaries for player and enemy stats, and room memory
 placeholderforenemyhp = 0
 enemylist = []
 lootlist = [
@@ -21,7 +20,9 @@ lootlist = [
     "potion of strength", "potion of health", "potion of speed",
     "potion of strength", "potion of health", "potion of speed", "longsword",
     "longsword", "longsword", "greatsword", "greatsword",
-    "sword of the ancient ones"
+    "sword of the ancient ones", "breastplate", "breastplate", "breastplate", "breastplate", 
+    "helmet", "helmet", "helmet", "helmet", "helmet", "helmet", "leggings", "leggings", "leggings",
+    "leggings", "leggings", "boots", "boots", "boots", "boots", "boots", "boots", "boots", "boots"
 ]
 
 plyr = {
@@ -68,8 +69,7 @@ dark_wizard = {
 
 #restart function
 def restart():
-    plyr["monsters_killed"] = 0
-    plyr["items"] = []
+    plyr = sign_in()
     while True:
         #asking the user if they want to keep playing 
         play_again = input("Do you want to keep fighting? (y/n) ").lower()
@@ -77,7 +77,7 @@ def restart():
         if play_again == "y":
             #setting up stats
             while True:
-                difficulty = input("What difficulty do you want the labrinth to be? (easy, medium, hard)").lower()
+                difficulty = input("What difficulty do you want the fights to be? (easy, medium, hard)").lower()
                 if difficulty == "easy":
                     print("Ok! You decide to play on easy mode, where you start with a greatsword(modifies strength by + 4), , a potion of speed(modifies dexterity by + 2), a potion of health(increases health by 50), and a potion of strength(modifies strength by + 2). You also only encounter goblins and orcs.")
                     time.sleep(3)
@@ -112,35 +112,6 @@ def restart():
                 else:
                     print("Not valid difficulty.")
 
-                
-
-
-
-#changing the random string to a literal
-    if enemy == "goblin":
-        enemy = goblin
-    elif enemy == "orc":
-        enemy = orc
-    elif enemy == "werewolf":
-        enemy = werewolf
-    elif enemy == "skeleton":
-        enemy = skeleton
-    elif enemy == "gelatinous_cube":
-        enemy = gelatinous_cube
-    elif enemy == "dark_wizard":
-        enemy = dark_wizard
-
-
-
-
-
-
-
-
-
-
-#checking hp
-#if it == 0, return that they lost and break the loop of the main function
 
 
 #main function
@@ -153,17 +124,17 @@ def main():
             print("You attack the enemy!")
             global placeholderforenemyhp
             #changing the random string to a literal
-            if enemy == "goblin":
+            if current_enemy == "goblin":
                 enemy = goblin
-            elif enemy == "orc":
+            elif current_enemy == "orc":
                 enemy = orc
-            elif enemy == "werewolf":
+            elif current_enemy == "werewolf":
                 enemy = werewolf
-            elif enemy == "skeleton":
+            elif current_enemy == "skeleton":
                 enemy = skeleton
-            elif enemy == "gelatinous_cube":
+            elif current_enemy == "gelatinous_cube":
                 enemy = gelatinous_cube
-            elif enemy == "dark_wizard":
+            elif current_enemy == "dark_wizard":
                 enemy = dark_wizard
             placeholderforenemyhp = enemy["hp"]
             while True:

@@ -5,7 +5,6 @@ import time
 import random
 
 #importing other needed functions
-from win_checking import winner
 from win_checking import monsterloser
 from win_checking import loser
 
@@ -30,9 +29,6 @@ def combat(current_enemy, plyr, lootlist):
             monsterded = monsterloser(current_enemy, placeholderforenemyhp)
             if monsterded:
                 plyr["monsters_killed"] += 1
-                wun = winner()
-                if wun:
-                    return "winner!"
                 lootchance = random.randint(1, 2)
                 actualloot = random.choice(lootlist)
                 if lootchance == 1:
@@ -97,6 +93,7 @@ def compcombat(enemy, plyr):
             print("You have " + str(plyr["hp"]) + " hp left.")
             time.sleep(0.5)
         #randomly generated attacks
+        
         #checking player stats
         combatplyrlose = loser()
         if combatplyrlose:

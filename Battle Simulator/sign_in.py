@@ -2,6 +2,8 @@
 
 #importing time
 import time
+import random
+import csv
 
 #sign in function
 def sign_in():
@@ -125,8 +127,22 @@ def sign_in():
                         file.write("\n")
                         file.write(username+":"+password)
                     def load_plyr():
-                        with open("Battle Simulator\characters.csv", "r"):
-                            
+                        with open("Battle Simulator\characters.csv", "r") as file:
+                            csv_reader = csv.reader(file)
+                            for line in csv_reader:
+                                if line[0] == username:
+                                    loaded_plyr = {}
+                                    loaded_plyr["username"] = line[0]
+                                    loaded_plyr["hp"] = line[1]
+                                    loaded_plyr["items"] = line[2]
+                                    loaded_plyr["equippeditems"] = line[3]
+                                    loaded_plyr["attack"] = line[4]
+                                    loaded_plyr["armor"] = line[5]
+                                    loaded_plyr["dexterity"] = line[6]
+                                    loaded_plyr["monsters_killed"] = line[7]
+                                else:
+                                    continue
+
                         return loaded_plyr
                     plyr = load_plyr()
                     print("Now lets roll some D20s for your hp!")
@@ -143,36 +159,22 @@ def sign_in():
                     time.sleep(1)
                     print("You got ")
                     for i in range(0, 6):
-                    roll = random.randint(1, 6)
-                    plyr["attack"] = plyr["attack"] + roll
-                    print(roll)
-                    time.sleep(0.5)
+                        roll = random.randint(1, 6)
+                        plyr["attack"] = plyr["attack"] + roll
+                        print(roll)
+                        time.sleep(0.5)
                     print("Your attack is " + str(plyr["attack"]))
                     time.sleep(1)
                     print("Now let's roll some six sided dice for your dexterity!")
                     time.sleep(1)
                     print("You got ")
                     for i in range(0, 6):
-                    roll = random.randint(1, 6)
-                    plyr["dexterity"] = plyr["dexterity"] + roll
-                    print(roll)
-                    time.sleep(0.5)
+                        roll = random.randint(1, 6)
+                        plyr["dexterity"] = plyr["dexterity"] + roll
+                        print(roll)
+                        time.sleep(0.5)
                     print("Your dexterity is " + str(plyr["dexterity"]))
-                    win = input("How many monsters do you want to kill to win?")
-                    plyr["goal"] = win
-                    print("Ok. Good luck!")
-                    #calling the game function
-                    windone = main()
-                    if windone == "gamedone":
-                    print("You win!!!")
-                    restart()
-                elif play_again == "n":
-                    print("Too bad! Wump Wump! You have to play. ")
-                    return
-                else:
-                    print("Invalid input.")
-                        break
-
+                    return plyr
                 #if passwords don't match, loop back
                 else:
                     print("Passwords do not match!!!")
