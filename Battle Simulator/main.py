@@ -79,16 +79,16 @@ def restart():
             while True:
                 difficulty = input("What difficulty do you want the fights to be? (easy, medium, hard)").lower()
                 if difficulty == "easy":
-                    print("Ok! You decide to play on easy mode, where you start with a greatsword(modifies strength by + 4), , a potion of speed(modifies dexterity by + 2), a potion of health(increases health by 50), and a potion of strength(modifies strength by + 2). You also only encounter goblins and orcs.")
+                    print("Ok! You decide to play on easy mode, \n\nwhere you start with a greatsword(modifies strength by + 4),\n\na potion of speed(modifies dexterity by + 2), \na potion of health(increases health by 50), \n\nand a potion of strength(modifies strength by + 2). \n\nYou also only encounter goblins and orcs.")
                     time.sleep(3)
                     enemylist.append("goblin")
                     enemylist.append("orc")
                     plyr["items"].append("greatsword")
                     plyr["items"].append("potion of health")
                     plyr["items"].append("potion of strength")
-                    break
+                    return
                 elif difficulty == "medium":
-                    print("Ok! You decide to play on medium mode, where you start with a longsword(modifies strength by + 2), a potion of speed(modifies dexterity by + 2) and a potion of strength(modifies strength by + 2). You encounter skeletons and orcs, goblins and werewolves.")
+                    print("Ok! You decide to play on medium mode, \n\nwhere you start with a longsword(modifies strength by + 2), \n\na potion of speed(modifies dexterity by + 2) \nand a potion of strength(modifies strength by + 2). \n\nYou encounter skeletons and orcs, goblins and werewolves.")
                     time.sleep(3)
                     enemylist.append("goblin")
                     enemylist.append("orc")
@@ -96,11 +96,9 @@ def restart():
                     enemylist.append("skeleton")
                     plyr["items"].append("longsword")
                     plyr["items"].append("potion of strength")
-                    break
+                    return
                 elif difficulty == "hard":
-                    print(
-                        "Ok! You decide to play on hard mode, where you start with a normal sword(modifies strength by + 0) and makes there be super difficult monsters."
-                    )
+                    print("Ok! You decide to play on hard mode, \n\nwhere you start with a normal sword(modifies strength by + 0) \n\nand makes there be super difficult monsters.")
                     time.sleep(3)
                     enemylist.append("goblin")
                     enemylist.append("orc")
@@ -108,9 +106,14 @@ def restart():
                     enemylist.append("gelatinous cube")
                     enemylist.append("dark_wizard")
                     enemylist.append("gelatinous_cube")
-                    break
+                    return
                 else:
                     print("Not valid difficulty.")
+                    continue
+        elif play_again == "n":
+            return "exit"
+        else:
+            print("Invalid input!")
 
 
 
@@ -122,7 +125,7 @@ def main():
         if choice == "1":
             #checking certain assets of the rooms in case to call the combat function
             print("You attack the enemy!")
-            global placeholderforenemyhp
+            current_enemy = random.choice(enemylist)
             #changing the random string to a literal
             if current_enemy == "goblin":
                 enemy = goblin

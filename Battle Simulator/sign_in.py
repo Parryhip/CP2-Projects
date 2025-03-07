@@ -32,9 +32,9 @@ def sign_in():
 
                     #reads all usernames and compares them to user input
                     with open("Battle Simulator\characters.csv", "r") as file:
-                        for line in file:
-                            items = line.split(":")
-                            if username == items[0]:
+                        csv_reader = csv.reader(file)
+                        for line in csv_reader:
+                            if username == line[0]:
                                 loopback = False
                                 break
 
@@ -62,13 +62,32 @@ def sign_in():
 
                     #reads all passwords and compares them
                     with open("Battle Simulator\characters.csv", "r") as file:
-                        for line in file:
-                            items = line.split(":")
-                            if username == items[0]:
+                        csv_reader = csv.reader(file)
+                        for line in csv_reader:
+                            if username == line[0]:
                                 #if user input matches
-                                if password == items[1]:
+                                if password == line[1]:
                                     print("Signed in successfully!")
-                                    return username
+                                    def load_plyr():
+                                        with open("Battle Simulator\characters.csv", "r") as file:
+                                            csv_reader = csv.reader(file)
+                                            for line in csv_reader:
+                                                if line[0] == username:
+                                                    loaded_plyr = {}
+                                                    loaded_plyr["username"] = line[0]
+                                                    loaded_plyr["hp"] = int(line[2])
+                                                    loaded_plyr["items"] = line[3].split(", ")
+                                                    loaded_plyr["equippeditems"] = line[4].split(", ")
+                                                    loaded_plyr["attack"] = int(line[5])
+                                                    loaded_plyr["armor"] = int(line[6])
+                                                    loaded_plyr["dexterity"] = int(line[7])
+                                                    loaded_plyr["monsters_killed"] = int(line[8])
+                                                else:
+                                                    continue
+
+                                        return loaded_plyr
+                                    plyr = load_plyr()
+                                    return plyr
                                 #if user input doesn't match
                                 else:
                                     print("Invalid password!")
@@ -123,28 +142,6 @@ def sign_in():
                 #if passwords match, input all info
                 if password == confirm_password:
                     print("Username of",username,"and password of",password,"has been inputted successfully!")
-                    with open("Battle Simulator\characters.csv", "a") as file:
-                        file.write("\n")
-                        file.write(username+":"+password)
-                    def load_plyr():
-                        with open("Battle Simulator\characters.csv", "r") as file:
-                            csv_reader = csv.reader(file)
-                            for line in csv_reader:
-                                if line[0] == username:
-                                    loaded_plyr = {}
-                                    loaded_plyr["username"] = line[0]
-                                    loaded_plyr["hp"] = line[1]
-                                    loaded_plyr["items"] = line[2]
-                                    loaded_plyr["equippeditems"] = line[3]
-                                    loaded_plyr["attack"] = line[4]
-                                    loaded_plyr["armor"] = line[5]
-                                    loaded_plyr["dexterity"] = line[6]
-                                    loaded_plyr["monsters_killed"] = line[7]
-                                else:
-                                    continue
-
-                        return loaded_plyr
-                    plyr = load_plyr()
                     print("Now lets roll some D20s for your hp!")
                     time.sleep(1)
                     print("You got ")
@@ -174,6 +171,9 @@ def sign_in():
                         print(roll)
                         time.sleep(0.5)
                     print("Your dexterity is " + str(plyr["dexterity"]))
+                    with open("Battle Simulator\characters.csv", "a") as file:
+                        file.write("\n")
+                        file.write([username,password,plyr["hp"],"","",plyr["attack"],plyr["armor"],plyr["dexterity"],0])
                     return plyr
                 #if passwords don't match, loop back
                 else:
