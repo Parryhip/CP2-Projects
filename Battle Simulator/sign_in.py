@@ -183,14 +183,22 @@ def sign_in():
                     with open("Battle Simulator\characters.csv", "a") as file:
                         file.write("\n")
                         file.write(username)
+                        file.write(",")
                         file.write(password)
-                        file.write(plyr["hp"])
+                        file.write(",")
+                        file.write(str(plyr["hp"]))
+                        file.write(",")
                         file.write("")
+                        file.write(",")
                         file.write("")
-                        file.write(plyr["attack"])
-                        file.write(plyr["armor"])
-                        file.write(plyr["dexterity"])
-                        file.write(0)
+                        file.write(",")
+                        file.write(str(plyr["attack"]))
+                        file.write(",")
+                        file.write(str(plyr["armor"]))
+                        file.write(",")
+                        file.write(str(plyr["dexterity"]))
+                        file.write(",")
+                        file.write("0")
                     return plyr
                 #if passwords don't match, loop back
                 else:

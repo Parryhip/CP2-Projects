@@ -119,27 +119,29 @@ def restart():
 
 #main function
 def main():
+    restart()
+    current_enemy = random.choice(enemylist)
+    #changing the random string to a literal
+    if current_enemy == "goblin":
+        enemy = goblin
+    elif current_enemy == "orc":
+        enemy = orc
+    elif current_enemy == "werewolf":
+        enemy = werewolf
+    elif current_enemy == "skeleton":
+        enemy = skeleton
+    elif current_enemy == "gelatinous_cube":
+        enemy = gelatinous_cube
+    elif current_enemy == "dark_wizard":
+        enemy = dark_wizard
+    placeholderforenemyhp = enemy["hp"]
+    print("The current enemy is a",current_enemy+".")
     #main while loop
     while True:
         choice = input("What do you want to do? (1 to attack, 2 to look at inventory, 3 to equip swords, 4 to drink potions) ")
         if choice == "1":
             #checking certain assets of the rooms in case to call the combat function
             print("You attack the enemy!")
-            current_enemy = random.choice(enemylist)
-            #changing the random string to a literal
-            if current_enemy == "goblin":
-                enemy = goblin
-            elif current_enemy == "orc":
-                enemy = orc
-            elif current_enemy == "werewolf":
-                enemy = werewolf
-            elif current_enemy == "skeleton":
-                enemy = skeleton
-            elif current_enemy == "gelatinous_cube":
-                enemy = gelatinous_cube
-            elif current_enemy == "dark_wizard":
-                enemy = dark_wizard
-            placeholderforenemyhp = enemy["hp"]
             while True:
                 done = combat(enemy,plyr,lootlist)
                 if done == "done":
@@ -213,4 +215,4 @@ def main():
                 print("You do not have that potion.")
 
 
-restart()
+main()
