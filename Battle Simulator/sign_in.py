@@ -142,6 +142,15 @@ def sign_in():
                 #if passwords match, input all info
                 if password == confirm_password:
                     print("Username of",username,"and password of",password,"has been inputted successfully!")
+                    plyr = {
+                        "hp": 0,
+                        "items": [],
+                        "equippeditems": [],
+                        "attack": 0,
+                        "armor": 0,
+                        "dexterity": 0,
+                        "monsters_killed": 0,
+                    }
                     print("Now lets roll some D20s for your hp!")
                     time.sleep(1)
                     print("You got ")
@@ -173,7 +182,15 @@ def sign_in():
                     print("Your dexterity is " + str(plyr["dexterity"]))
                     with open("Battle Simulator\characters.csv", "a") as file:
                         file.write("\n")
-                        file.write([username,password,plyr["hp"],"","",plyr["attack"],plyr["armor"],plyr["dexterity"],0])
+                        file.write(username)
+                        file.write(password)
+                        file.write(plyr["hp"])
+                        file.write("")
+                        file.write("")
+                        file.write(plyr["attack"])
+                        file.write(plyr["armor"])
+                        file.write(plyr["dexterity"])
+                        file.write(0)
                     return plyr
                 #if passwords don't match, loop back
                 else:
