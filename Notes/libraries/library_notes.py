@@ -45,4 +45,4 @@
 #license
 
 #___________________________8. Why do we include README files with our projects?
-#to give user important info
+#to give user important info about project and tell them what the project is about
