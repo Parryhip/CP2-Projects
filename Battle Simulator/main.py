@@ -52,6 +52,8 @@ def restart(signedin):
         pass
     else:
         plyr = sign_in()
+        if plyr == "exit":
+            return "exit"
         signedin = True    
     #setting up stats
     while True:
@@ -114,7 +116,7 @@ def main(signedin):
                 return False
             else:
                 print("Invalid input!")
-
+    ogenemyhp = enemy["hp"]
     #main while loop
     while True:
         if keep_going():
@@ -129,25 +131,48 @@ def main(signedin):
             while True:
                 done = combat(enemy,plyr)
                 if done == "done":
+                    if current_enemy == "goblin":
+                        print("You earned 10 xp from killing that goblin!")
+                        plyr["xp"] += 10
+                    elif current_enemy == "orc":
+                        print("You earned 25 xp from killing that orc!")
+                        plyr["xp"] += 25
+                    elif current_enemy == "werewolf":
+                        print("You earned 50 xp from killing that werewolf!")
+                        plyr["xp"] += 50
+                    elif current_enemy == "skeleton":
+                        print("You earned 50 xp from killing that skeleton!")
+                        plyr["xp"] += 50
+                    elif current_enemy == "gelatinous cube":
+                        print("You earned 75 xp from killing that gelatinous cube!")
+                        plyr["xp"] += 75
+                    elif current_enemy == "dark wizard":
+                        print("You earned 100 xp from killing that dark wizard!")
+                        plyr["xp"] += 100
+                    with open("Battle Simulator/characters.csv", "r") as file:
+                            csv_reader = csv.reader(file)
+                            rows = list(csv_reader)
+
+                    for row in rows:
+                        if row[0] == plyr["username"]:
+                            row[6] = str(plyr["xp"])
+
+                    with open("Battle Simulator/characters.csv", "w", newline="") as file:
+                        csv_writer = csv.writer(file)
+                        csv_writer.writerows(rows)
                     current_enemy = random.choice(enemylist)
                     #changing the random string to a literal dictionary
                     if current_enemy == "goblin":
-                        print("You earned 10 xp from killing that goblin!")
                         enemy = goblin
                     elif current_enemy == "orc":
-                        print("You earned 25 xp from killing that orc!")
                         enemy = orc
                     elif current_enemy == "werewolf":
-                        print("You earned 50 xp from killing that werewolf!")
                         enemy = werewolf
                     elif current_enemy == "skeleton":
-                        print("You earned 50 xp from killing that skeleton!")
                         enemy = skeleton
                     elif current_enemy == "gelatinous cube":
-                        print("You earned 75 xp from killing that gelatinous cube!")
                         enemy = gelatinous_cube
                     elif current_enemy == "dark wizard":
-                        print("You earned 100 xp from killing that dark wizard!")
                         enemy = dark_wizard
                     print("The new monster that is arriving is a",current_enemy)
                     break
@@ -155,13 +180,12 @@ def main(signedin):
                     print("Good job!")
                     return "gamedone"
                 else:
-                    
-
+                    enemy["hp"] = done
 
                     
 
                     #calling of the computer combat function
-                    ogenemyhp = enemy["hp"]
+                    
                     resultofcombat = compcombat(enemy, plyr)
                     if resultofcombat == "wump_wump":
                         print("You died!")
@@ -180,7 +204,8 @@ def main(signedin):
                             csv_writer.writerows(rows)
 
                         signedin = False
-                        restart(signedin)
+                        if restart(signedin) == "exit":
+                            return
                         break
                     if resultofcombat == "done":
                         enemy["hp"] = ogenemyhp
@@ -219,6 +244,7 @@ def main(signedin):
             print(f"Armor: {plyr["armor"]}")
             print(f"Dexterity: {plyr["dexterity"]}")
             print(f"Hp: {plyr["hp"]}")
+            print(f"Xp: {plyr["xp"]}")
             print(f"Level: {level}")
 
 

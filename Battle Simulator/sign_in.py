@@ -9,7 +9,7 @@ import csv
 def sign_in():
     while True:
         #user input to sign in, sign up, be anonymous, or exit
-        choice = input("Type 1 to sign in, type 2 to sign up, type 3 to be anonymous, and type 4 to exit.\n-->")
+        choice = input("Type 1 to sign in, type 2 to sign up, and type 3 to exit.\n-->")
         
         #if the user wants to sign in 
         if choice == "1":
@@ -209,12 +209,8 @@ def sign_in():
                     print("Passwords do not match!!!")
                     continue
         
-        #if the user wants to be anonymous
-        elif choice == "3":
-            return "anonymous"
-        
         #if the user wants to exit
-        elif choice == "4":
+        elif choice == "3":
             return "exit"
         
         #if the user is stupid and can't figure out how to type a good input
