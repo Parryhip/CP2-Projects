@@ -1,8 +1,9 @@
 #samuel andelin, battle simulator
 
-#importing time for dramatic effects, random for the randomly generated rooms and dice rolls
+#importing time for dramatic effects, random for the randomly generated rooms and dice rolls, and csv for file handling
 import time
 import random
+import csv
 
 #importing neccessary functions
 from combat import combat
@@ -10,31 +11,7 @@ from combat import compcombat
 from sign_in import sign_in
 
 #lists/dictionaries for player and enemy stats, and room memory
-placeholderforenemyhp = 0
 enemylist = []
-lootlist = [
-    "potion of strength", "potion of health", "potion of speed",
-    "potion of strength", "potion of health", "potion of speed",
-    "potion of strength", "potion of health", "potion of speed",
-    "potion of strength", "potion of health", "potion of speed",
-    "potion of strength", "potion of health", "potion of speed",
-    "potion of strength", "potion of health", "potion of speed", "longsword",
-    "longsword", "longsword", "greatsword", "greatsword",
-    "sword of the ancient ones", "breastplate", "breastplate", "breastplate", "breastplate", 
-    "helmet", "helmet", "helmet", "helmet", "helmet", "helmet", "leggings", "leggings", "leggings",
-    "leggings", "leggings", "boots", "boots", "boots", "boots", "boots", "boots", "boots", "boots"
-]
-
-plyr = {
-    "hp": 0,
-    "items": [],
-    "equippeditems": [],
-    "attack": 0,
-    "armor": 0,
-    "dexterity": 0,
-    "monsters_killed": 0,
-    "goal": 0,
-}
 goblin = {
     "hp": 20,
     "attack": 5,
@@ -66,60 +43,52 @@ dark_wizard = {
     "dexterity": 20,
 }
 
+#setting that the user is not signed in
+signedin = False
 
 #restart function
-def restart():
-    plyr = sign_in()
+def restart(signedin):
+    if signedin:
+        pass
+    else:
+        plyr = sign_in()
+        signedin = True    
+    #setting up stats
     while True:
-        #asking the user if they want to keep playing 
-        play_again = input("Do you want to keep fighting? (y/n) ").lower()
-        #if they do, the game continues
-        if play_again == "y":
-            #setting up stats
-            while True:
-                difficulty = input("What difficulty do you want the fights to be? (easy, medium, hard)").lower()
-                if difficulty == "easy":
-                    print("Ok! You decide to play on easy mode, \n\nwhere you start with a greatsword(modifies strength by + 4),\n\na potion of speed(modifies dexterity by + 2), \na potion of health(increases health by 50), \n\nand a potion of strength(modifies strength by + 2). \n\nYou also only encounter goblins and orcs.")
-                    time.sleep(3)
-                    enemylist.append("goblin")
-                    enemylist.append("orc")
-                    plyr["items"].append("greatsword")
-                    plyr["items"].append("potion of health")
-                    plyr["items"].append("potion of strength")
-                    return
-                elif difficulty == "medium":
-                    print("Ok! You decide to play on medium mode, \n\nwhere you start with a longsword(modifies strength by + 2), \n\na potion of speed(modifies dexterity by + 2) \nand a potion of strength(modifies strength by + 2). \n\nYou encounter skeletons and orcs, goblins and werewolves.")
-                    time.sleep(3)
-                    enemylist.append("goblin")
-                    enemylist.append("orc")
-                    enemylist.append("werewolf")
-                    enemylist.append("skeleton")
-                    plyr["items"].append("longsword")
-                    plyr["items"].append("potion of strength")
-                    return
-                elif difficulty == "hard":
-                    print("Ok! You decide to play on hard mode, \n\nwhere you start with a normal sword(modifies strength by + 0) \n\nand makes there be super difficult monsters.")
-                    time.sleep(3)
-                    enemylist.append("goblin")
-                    enemylist.append("orc")
-                    enemylist.append("werewolf")
-                    enemylist.append("gelatinous cube")
-                    enemylist.append("dark_wizard")
-                    enemylist.append("gelatinous_cube")
-                    return
-                else:
-                    print("Not valid difficulty.")
-                    continue
-        elif play_again == "n":
-            return "exit"
+        difficulty = input("What difficulty do you want the fights to be? (easy, medium, hard)").lower()
+        if difficulty == "easy":
+            print("Ok! You decide to play on easy mode, where you only encounter goblins and orcs.")
+            time.sleep(3)
+            enemylist.append("goblin")
+            enemylist.append("orc")
+            return plyr, signedin
+        elif difficulty == "medium":
+            print("Ok! You decide to play on medium mode, where you only encounter skeletons, orcs, goblins, and werewolves.")
+            time.sleep(3)
+            enemylist.append("goblin")
+            enemylist.append("orc")
+            enemylist.append("werewolf")
+            enemylist.append("skeleton")
+            return plyr, signedin
+        elif difficulty == "hard":
+            print("Ok! You decide to play on hard mode, where it makes there be super difficult monsters.")
+            time.sleep(3)
+            enemylist.append("goblin")
+            enemylist.append("orc")
+            enemylist.append("werewolf")
+            enemylist.append("dark wizard")
+            enemylist.append("gelatinous cube")
+            return plyr, signedin
         else:
-            print("Invalid input!")
+            print("Not valid difficulty.")
+            continue
+        
 
 
 
 #main function
-def main():
-    restart()
+def main(signedin):
+    plyr, signedin = restart(signedin)
     current_enemy = random.choice(enemylist)
     #changing the random string to a literal
     if current_enemy == "goblin":
@@ -130,89 +99,128 @@ def main():
         enemy = werewolf
     elif current_enemy == "skeleton":
         enemy = skeleton
-    elif current_enemy == "gelatinous_cube":
+    elif current_enemy == "gelatinous cube":
         enemy = gelatinous_cube
-    elif current_enemy == "dark_wizard":
+    elif current_enemy == "dark wizard":
         enemy = dark_wizard
-    placeholderforenemyhp = enemy["hp"]
-    print("The current enemy is a",current_enemy+".")
+    def keep_going():
+        while True:
+            #asking the user if they want to keep playing 
+            play_again = input("Do you want to keep fighting? (y/n) ").lower()
+            #if they do, the game continues
+            if play_again == "y":
+                return True
+            elif play_again == "n":
+                return False
+            else:
+                print("Invalid input!")
+
     #main while loop
     while True:
-        choice = input("What do you want to do? (1 to attack, 2 to look at inventory, 3 to equip swords, 4 to drink potions) ")
+        if keep_going():
+            pass
+        else:
+            print("Ok, bye!")
+            return
+        print("The current enemy is a",current_enemy+".")
+        choice = input("What do you want to do? (1 to enter combat, 2 to view stats, 3 to exit) ")
         if choice == "1":
-            #checking certain assets of the rooms in case to call the combat function
-            print("You attack the enemy!")
+            print("You enter combat!")
             while True:
-                done = combat(enemy,plyr,lootlist)
+                done = combat(enemy,plyr)
                 if done == "done":
-                    print("Well done!")
+                    current_enemy = random.choice(enemylist)
+                    #changing the random string to a literal dictionary
+                    if current_enemy == "goblin":
+                        print("You earned 10 xp from killing that goblin!")
+                        enemy = goblin
+                    elif current_enemy == "orc":
+                        print("You earned 25 xp from killing that orc!")
+                        enemy = orc
+                    elif current_enemy == "werewolf":
+                        print("You earned 50 xp from killing that werewolf!")
+                        enemy = werewolf
+                    elif current_enemy == "skeleton":
+                        print("You earned 50 xp from killing that skeleton!")
+                        enemy = skeleton
+                    elif current_enemy == "gelatinous cube":
+                        print("You earned 75 xp from killing that gelatinous cube!")
+                        enemy = gelatinous_cube
+                    elif current_enemy == "dark wizard":
+                        print("You earned 100 xp from killing that dark wizard!")
+                        enemy = dark_wizard
+                    print("The new monster that is arriving is a",current_enemy)
                     break
                 elif done == "winner!":
                     print("Good job!")
                     return "gamedone"
                 else:
+                    
+
+
+                    
+
                     #calling of the computer combat function
-                    resultofcombat = compcombat()
+                    ogenemyhp = enemy["hp"]
+                    resultofcombat = compcombat(enemy, plyr)
                     if resultofcombat == "wump_wump":
                         print("You died!")
-                        restart()
+                        time.sleep(1)
+                        print("This means that you lose all of your xp, but don't worry, your character is still saved.")
+                        with open("Battle Simulator/characters.csv", "r") as file:
+                            csv_reader = csv.reader(file)
+                            rows = list(csv_reader)
+
+                        for row in rows:
+                            if row[0] == plyr["username"]:
+                                row[6] = "0"
+
+                        with open("Battle Simulator/characters.csv", "w", newline="") as file:
+                            csv_writer = csv.writer(file)
+                            csv_writer.writerows(rows)
+
+                        signedin = False
+                        restart(signedin)
                         break
                     if resultofcombat == "done":
+                        enemy["hp"] = ogenemyhp
                         break
                     elif resultofcombat == "win!!!":
                         return "gamedone"
+                    else:
+                        plyr["hp"] = resultofcombat
 
+                        with open("Battle Simulator/characters.csv", "r") as file:
+                            csv_reader = csv.reader(file)
+                            rows = list(csv_reader)
+
+                        for row in rows:
+                            if row[0] == plyr["username"]:
+                                row[2] = str(plyr["hp"])
+
+                        with open("Battle Simulator/characters.csv", "w", newline="") as file:
+                            csv_writer = csv.writer(file)
+                            csv_writer.writerows(rows)
         elif choice == "2":
-            print("You look at your inventory!")
-            print("These are the items in your inventory: ")
-            print(plyr["items"])
-            time.sleep(0.5)
-        elif choice == "3":
-            print("What do you want to equip?: ")
-            print(plyr["items"])
-            equip = input(": ")
-            if equip == "longsword" and "longsword" in plyr["items"] and "longsword" not in plyr["equippeditems"]:
-                print("You equip your longsword.")
-                print("Now you have a modifier of + 2 attack")
-                plyr["equippeditems"].append("longsword")
-                plyr["attack"] = plyr["attack"] + 2
-            elif equip == "greatsword" and "greatsword" in plyr["items"] and "greatsword" not in plyr["equippeditems"]:
-                print("You equip your greatsword.")
-                print("Now you have a modifier of + 4 attack")
-                plyr["equippeditems"].append("greatsword")
-                plyr["attack"] = plyr["attack"] + 4
-            elif equip == "sword of the ancient ones" and "sword of the ancient ones" in plyr["items"] and "sword of the ancient ones" not in plyr["equippeditems"]:
-                print("You equip the sword of the ancient ones.")
-                print("Light falls upon you as you wield this sword.")
-                print("Nothing can stand in your way as this sword gives you an attack modifier of + 10")
-                plyr["equippeditems"].append("sword of the ancient ones")
-                plyr["attack"] = plyr["attack"] + 10
+            if 0 <= plyr["xp"] and plyr["xp"] < 50:
+                level = 1
+            elif 50 <= plyr["xp"] and plyr["xp"] < 150:
+                level = 2
+            elif 150 <= plyr["xp"] and plyr["xp"] < 300:
+                level = 3
+            elif 300 <= plyr["xp"] and plyr["xp"] < 500:
+                level = 4
+            elif 500 <= plyr["xp"] and plyr["xp"] < 750:
+                level = 5
             else:
-                print("You do not have that sword or you have it equipped already.")
-        elif choice == "4":
-            print("What potion do you want to drink?: ")
-            print(plyr["items"])
-            equipp = input(": ")
-            if equipp == "potion of health" and "potion of health" in plyr["items"] and "potion of health" in plyr["items"]:
-                plyr["items"].remove("potion of health")
-                print("You drink the potion of strength.")
-                print("This gives your health a boost of + 50")
-                plyr["hp"] = plyr["hp"] + 50
-                print("Your hp is now " + str(plyr["hp"]))
-            elif equipp == "potion of strength" and "potion of strength" in plyr["items"] and "potion of strength" in plyr["items"]:
-                print("You drink the potion of strength.")
-                print("This gives your attack a modifier of + 2")
-                plyr["items"].remove("potion of strength")
-                plyr["attack"] = plyr["attack"] + 2
-                print("Your attack is now " + str(plyr["attack"]))
-            elif equipp == "potion of speed" and "potion of speed" in plyr["items"] and "potion of speed" in plyr["items"]:
-                print("You drink the potion of speed.")
-                print("This gives your dexterity a modifier of + 2")
-                plyr["items"].remove("potion of speed")
-                plyr["dexterity"] = plyr["dexterity"] + 2
-                print("Your dexterity is now " + str(plyr["dexterity"]))
-            else:
-                print("You do not have that potion.")
+                level = 6
+            print("Here are your stats:")
+            print(f"Attack: {plyr["attack"]}")
+            print(f"Armor: {plyr["armor"]}")
+            print(f"Dexterity: {plyr["dexterity"]}")
+            print(f"Hp: {plyr["hp"]}")
+            print(f"Level: {level}")
 
 
-main()
+#calling of the main function
+main(signedin)

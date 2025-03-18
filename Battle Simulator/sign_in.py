@@ -31,7 +31,7 @@ def sign_in():
                         break
 
                     #reads all usernames and compares them to user input
-                    with open("Battle Simulator\characters.csv", "r") as file:
+                    with open("Battle Simulator/characters.csv", "r") as file:
                         csv_reader = csv.reader(file)
                         for line in csv_reader:
                             if username == line[0]:
@@ -61,7 +61,7 @@ def sign_in():
                         break
 
                     #reads all passwords and compares them
-                    with open("Battle Simulator\characters.csv", "r") as file:
+                    with open("Battle Simulator/characters.csv", "r") as file:
                         csv_reader = csv.reader(file)
                         for line in csv_reader:
                             if username == line[0]:
@@ -69,19 +69,17 @@ def sign_in():
                                 if password == line[1]:
                                     print("Signed in successfully!")
                                     def load_plyr():
-                                        with open("Battle Simulator\characters.csv", "r") as file:
+                                        with open("Battle Simulator/characters.csv", "r") as file:
                                             csv_reader = csv.reader(file)
                                             for line in csv_reader:
                                                 if line[0] == username:
                                                     loaded_plyr = {}
                                                     loaded_plyr["username"] = line[0]
                                                     loaded_plyr["hp"] = int(line[2])
-                                                    loaded_plyr["items"] = line[3].split(", ")
-                                                    loaded_plyr["equippeditems"] = line[4].split(", ")
-                                                    loaded_plyr["attack"] = int(line[5])
-                                                    loaded_plyr["armor"] = int(line[6])
-                                                    loaded_plyr["dexterity"] = int(line[7])
-                                                    loaded_plyr["monsters_killed"] = int(line[8])
+                                                    loaded_plyr["attack"] = int(line[3])
+                                                    loaded_plyr["armor"] = int(line[4])
+                                                    loaded_plyr["dexterity"] = int(line[5])
+                                                    loaded_plyr["xp"] = int(line[6])
                                                 else:
                                                     continue
 
@@ -113,7 +111,7 @@ def sign_in():
                     continue
 
                 #checks if the username is already taken
-                with open("Battle Simulator\characters.csv", "r") as file:
+                with open("Battle Simulator/characters.csv", "r") as file:
                     for line in file:
                         items = line.split(":")
                         if username == items[0]:
@@ -169,7 +167,17 @@ def sign_in():
                         plyr["attack"] = plyr["attack"] + roll
                         print(roll)
                         time.sleep(0.5)
-                    print("Your attack is " + str(plyr["attack"]))
+                    print("Your attack is " + str(plyr["armor"]))
+                    time.sleep(1)
+                    print("Now let's roll some six sided dice for your armor!")
+                    time.sleep(1)
+                    print("You got ")
+                    for i in range(0, 6):
+                        roll = random.randint(1, 6)
+                        plyr["armor"] = plyr["armor"] + roll
+                        print(roll)
+                        time.sleep(0.5)
+                    print("Your armor is " + str(plyr["armor"]))
                     time.sleep(1)
                     print("Now let's roll some six sided dice for your dexterity!")
                     time.sleep(1)
@@ -180,17 +188,13 @@ def sign_in():
                         print(roll)
                         time.sleep(0.5)
                     print("Your dexterity is " + str(plyr["dexterity"]))
-                    with open("Battle Simulator\characters.csv", "a") as file:
+                    with open("Battle Simulator/characters.csv", "a") as file:
                         file.write("\n")
                         file.write(username)
                         file.write(",")
                         file.write(password)
                         file.write(",")
                         file.write(str(plyr["hp"]))
-                        file.write(",")
-                        file.write("")
-                        file.write(",")
-                        file.write("")
                         file.write(",")
                         file.write(str(plyr["attack"]))
                         file.write(",")
