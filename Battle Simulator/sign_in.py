@@ -31,7 +31,7 @@ def sign_in():
                         break
 
                     #reads all usernames and compares them to user input
-                    with open("Battle Simulator/characters.csv", "r") as file:
+                    with open("Battle Simulator/characters.csv", "r",newline="") as file:
                         csv_reader = csv.reader(file)
                         for line in csv_reader:
                             if username == line[0]:
@@ -69,7 +69,7 @@ def sign_in():
                                 if password == line[1]:
                                     print("Signed in successfully!")
                                     def load_plyr():
-                                        with open("Battle Simulator/characters.csv", "r") as file:
+                                        with open("Battle Simulator/characters.csv", "r",newline="") as file:
                                             csv_reader = csv.reader(file)
                                             for line in csv_reader:
                                                 if line[0] == username:
@@ -77,9 +77,7 @@ def sign_in():
                                                     loaded_plyr["username"] = line[0]
                                                     loaded_plyr["hp"] = int(line[2])
                                                     loaded_plyr["attack"] = int(line[3])
-                                                    loaded_plyr["armor"] = int(line[4])
-                                                    loaded_plyr["dexterity"] = int(line[5])
-                                                    loaded_plyr["xp"] = int(line[6])
+                                                    loaded_plyr["xp"] = int(line[4])
                                                 else:
                                                     continue
 
@@ -139,15 +137,14 @@ def sign_in():
 
                 #if passwords match, input all info
                 if password == confirm_password:
-                    print("Username of",username,"and password of",password,"has been inputted successfully!")
+                    print("Username of",username,"and password of",password,"confirmed!")
                     plyr = {
+                        "username": username,
                         "hp": 0,
-                        "items": [],
-                        "equippeditems": [],
                         "attack": 0,
                         "armor": 0,
                         "dexterity": 0,
-                        "monsters_killed": 0,
+                        "xp": 0,
                     }
                     print("Now lets roll some D20s for your hp!")
                     time.sleep(1)
@@ -167,28 +164,10 @@ def sign_in():
                         plyr["attack"] = plyr["attack"] + roll
                         print(roll)
                         time.sleep(0.5)
-                    print("Your attack is " + str(plyr["armor"]))
+                    print("Your attack is " + str(plyr["attack"]))
                     time.sleep(1)
-                    print("Now let's roll some six sided dice for your armor!")
-                    time.sleep(1)
-                    print("You got ")
-                    for i in range(0, 6):
-                        roll = random.randint(1, 6)
-                        plyr["armor"] = plyr["armor"] + roll
-                        print(roll)
-                        time.sleep(0.5)
-                    print("Your armor is " + str(plyr["armor"]))
-                    time.sleep(1)
-                    print("Now let's roll some six sided dice for your dexterity!")
-                    time.sleep(1)
-                    print("You got ")
-                    for i in range(0, 6):
-                        roll = random.randint(1, 6)
-                        plyr["dexterity"] = plyr["dexterity"] + roll
-                        print(roll)
-                        time.sleep(0.5)
-                    print("Your dexterity is " + str(plyr["dexterity"]))
-                    with open("Battle Simulator/characters.csv", "a") as file:
+                    print("Character has been successfully inputted!")
+                    with open("Battle Simulator/characters.csv", "a",newline="") as file:
                         file.write("\n")
                         file.write(username)
                         file.write(",")
@@ -197,10 +176,6 @@ def sign_in():
                         file.write(str(plyr["hp"]))
                         file.write(",")
                         file.write(str(plyr["attack"]))
-                        file.write(",")
-                        file.write(str(plyr["armor"]))
-                        file.write(",")
-                        file.write(str(plyr["dexterity"]))
                         file.write(",")
                         file.write("0")
                     return plyr

@@ -1,7 +1,5 @@
 #Samuel Andelin, Battle Simulator
 
-
-
 #moster ded function
 def monsterloser(placeholder):
     if placeholder <= 0 or placeholder == 0:
