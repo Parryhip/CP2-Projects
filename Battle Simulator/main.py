@@ -1,9 +1,11 @@
 #samuel andelin, battle simulator
 
-#importing time for pauses, random for the dice rolls, and csv for file handling
+#importing time for pauses, random for the dice rolls, csv for file handling, matplotlib for visualization
 import time
 import random
 import csv
+import matplotlib.pyplot as plt
+import numpy as np
 
 #importing neccessary functions
 from combat import combat
@@ -167,7 +169,7 @@ def main(signedin):
         print("The current enemy is a",current_enemy+".")
 
         #asks user what they want to do
-        choice = input("What do you want to do? (1 to enter combat, 2 to view stats, 3 to exit) ")
+        choice = input("What do you want to do? (1 to enter combat, 2 to view stats, 3 to view character name and backstory, 4 to exit) ")
 
         #if the user wants to enter combat
         if choice == "1":
@@ -274,17 +276,46 @@ def main(signedin):
                 level = 6
 
             #prints stats
-            print("Here are your stats:")
-            print(f"Attack: {plyr["attack"]}")
-            print(f"Hp: {plyr["hp"]}")
-            print(f"Xp: {plyr["xp"]}")
-            print(f"Level: {level}")
+            print("Here are your stats (Click the close window button to continue):")
+
+
+            mylabels = ["Hp", "Attack", "Xp"]
+            num = 360/(plyr["hp"] + plyr["attack"] + plyr["xp"])
+            y = np.array([plyr["hp"]*num, plyr["attack"]*num, plyr["xp"]*num])
+
+            plt.pie(y, labels = mylabels)
+            plt.show()
         
-        #if the user wants to exit
+        #if the user wants to view backstory and name:
         elif choice == "3":
+            with open("Battle Simulator/characters.csv", "r") as file:
+                csv_reader = csv.reader(file)
+                rows = list(csv_reader)
+                for row in rows:
+                    try:
+                        if row[0] == plyr["username"]:
+                            name = row[6]
+                    except:
+                        pass
+                print("Your name is",name)
+                time.sleep(2)
+                print("Backstory:")
+                time.sleep(0.5)
+                for row in rows:
+                    try:
+                        if row[0] == plyr["username"]:
+                            backstory = row[5]
+                    except:
+                        pass
+                print(backstory)
+
+        #if the user wants to exit
+        elif choice == "4":
             print("Ok, bye!")
             #exit
             return
+        else:
+            print("Not valid input.")
 
 #calling of the main function
 main(signedin)

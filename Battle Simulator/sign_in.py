@@ -1,9 +1,11 @@
 #Samuel Andelin, Battle Simulator
 
-#importing time
+#importing time, random, csv, and faker
 import time
 import random
 import csv
+from faker import Faker
+fake = Faker()
 
 #sign in function
 def sign_in():
@@ -166,10 +168,15 @@ def sign_in():
                         time.sleep(0.5)
                     print("Your attack is " + str(plyr["attack"]))
                     time.sleep(1)
+                    name = fake.name()
+                    age = str(random.randint(1, 100))
+                    job = fake.job()
+                    company = fake.company()
+                    backstory = f"{name} is {age} years old. Before they started fighting mosters, they worked as a {job} at the company {company}. "
                     print("Character has been successfully inputted!")
                     with open("Battle Simulator/characters.csv", "a", newline="\n") as file:
                         writer = csv.writer(file, lineterminator="\n")  # Ensures each row ends correctly
-                        writer.writerow([username, password, plyr["hp"], plyr["attack"], 0])
+                        writer.writerow([username, password, plyr["hp"], plyr["attack"], 0, backstory, name])
 
                     return plyr
                 #if passwords don't match, loop back
