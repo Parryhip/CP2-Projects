@@ -120,8 +120,11 @@ def main(signedin):
 
         #iterates over the rows and changes the stat
         for row in rows:
-            if row[0] == plyr["username"]:
-                row[stat] = str(value)
+            try:
+                if row[0] == plyr["username"]:
+                    row[stat] = str(value)
+            except:
+                pass
 
         #opens csv file and rewrites all of the contents with the updated ones
         with open("Battle Simulator/characters.csv", "w", newline="") as file:
@@ -129,7 +132,7 @@ def main(signedin):
             csv_writer.writerows(rows)
 
 
-    #calls the function to restart
+    #calls the function to 
     plyr, signedin = restart(signedin)
 
     #if user wanted to exit in the sign in function
