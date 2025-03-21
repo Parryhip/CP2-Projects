@@ -6,6 +6,7 @@ import random
 import csv
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 #importing neccessary functions
 from combat import combat
@@ -169,7 +170,7 @@ def main(signedin):
         print("The current enemy is a",current_enemy+".")
 
         #asks user what they want to do
-        choice = input("What do you want to do? (1 to enter combat, 2 to view stats, 3 to view character name and backstory, 4 to exit) ")
+        choice = input("What do you want to do? (1 to enter combat, 2 to view stats, 3 to view character name and backstory, 4 to view statistical analysis (mean, median, mode, max, min), 5 to exit) ")
 
         #if the user wants to enter combat
         if choice == "1":
@@ -278,11 +279,12 @@ def main(signedin):
             #prints stats
             print("Here are your stats (Click the close window button to continue):")
 
-
+            #pie chart for user stats setting up
             mylabels = ["Hp", "Attack", "Xp"]
             num = 360/(plyr["hp"] + plyr["attack"] + plyr["xp"])
             y = np.array([plyr["hp"]*num, plyr["attack"]*num, plyr["xp"]*num])
 
+            #pie chart for user stats setting up
             plt.pie(y, labels = mylabels)
             plt.show()
         
@@ -309,8 +311,68 @@ def main(signedin):
                         pass
                 print(backstory)
 
-        #if the user wants to exit
+        #if user wants to view statistical analysis on users        
         elif choice == "4":
+            with open("Battle Simulator/characters.csv", "r") as file:
+                csv_reader = csv.reader(file)
+                lines = list(csv_reader)
+                print("Here are all character stats compared:")
+                print("Hp:")
+                hps = []
+                for line in lines:
+                    if line[2] == "0":
+                        continue
+                    hps.append(int(line[2]))
+                hpstatistics = pd.Series(hps)
+                hpmean = hpstatistics.mean()
+                hpmode = hpstatistics.mode().values[0]
+                hpmedian = hpstatistics.median()
+                hpmax = hpstatistics.max()
+                hpmin = hpstatistics.min()
+                print("Mean:",hpmean)
+                print("Mode:",hpmode)
+                print("Median:",hpmedian)
+                print("Max:",hpmax)
+                print("Min:",hpmin)
+                print("\n\n")
+                print("Attacks:")
+                attacks = []
+                for line in lines:
+                    if line[3] == "0":
+                        continue
+                    attacks.append(int(line[3]))
+                attackstatistics = pd.Series(hps)
+                attackmean = attackstatistics.mean()
+                attackmode = attackstatistics.mode().values[0]
+                attackmedian = attackstatistics.median()
+                attackmax = attackstatistics.max()
+                attackmin = attackstatistics.min()
+                print("Mean:",attackmean)
+                print("Mode:",attackmode)
+                print("Median:",attackmedian)
+                print("Max:",attackmax)
+                print("Min:",attackmin)
+                print("\n\n")
+                print("Xp:")
+                xps = []
+                for line in lines:
+                    if line[4] == "0":
+                        continue
+                    xps.append(int(line[4]))
+                xpstatistics = pd.Series(xps)
+                xpmean = xpstatistics.mean()
+                xpmode = xpstatistics.mode().values[0]
+                xpmedian = xpstatistics.median()
+                xpmax = xpstatistics.max()
+                xpmin = xpstatistics.min()
+                print("Mean:",xpmean)
+                print("Mode:",xpmode)
+                print("Median:",xpmedian)
+                print("Max:",xpmax)
+                print("Min:",xpmin)
+
+        #if the user wants to exit
+        elif choice == "5":
             print("Ok, bye!")
             #exit
             return
