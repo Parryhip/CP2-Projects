@@ -1,0 +1,24 @@
+       #Samuel Andelin, Tracing notes
+       
+       #python -m trace --trace Notes\tracing.py
+       
+       #_________________________________________1.What is tracing?
+       
+       #Allows you to know when your functions are being called, where they are being called from, and what is happening inside
+       
+    1: """
+       --trace (displays function lines as they are executed)
+       --count (displays the number of times each function is executed)
+       """
+       
+       #_________________________________________2.What are some ways we can debug by tracing?
+       #_________________________________________3.How do you access the debugger in VS Code?
+       #_________________________________________4.What is testing?
+       #_________________________________________5.What are boundary conditions?
+       #_________________________________________6.How do you handle when users give strange inputs?
+       
+       
+    1: def add(num1,num2):
+    1:     return num1+num2
+       
+    1: add(1,56)
