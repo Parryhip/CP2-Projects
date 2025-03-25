@@ -287,6 +287,43 @@ def main(signedin):
             #pie chart for user stats setting up
             plt.pie(y, labels = mylabels)
             plt.show()
+
+
+
+
+            # Define level thresholds
+            level_thresholds = [0, 50, 150, 300, 500, 750, 1000]  # Example level XP requirements
+            
+            # Determine current level and next level XP
+            current_xp = plyr["xp"]
+            for i in range(len(level_thresholds) - 1):
+                if level_thresholds[i] <= current_xp < level_thresholds[i + 1]:
+                    next_level_xp = level_thresholds[i + 1]
+                    break
+            else:
+                next_level_xp = level_thresholds[-1]  # If above max level threshold
+
+            xp_needed = next_level_xp - current_xp  # XP left to next level
+
+            # Data for the bar graph
+            labels = ["Current XP", "XP Needed"]
+            values = [current_xp, xp_needed]
+
+            # Plot the XP progress bar graph
+            plt.figure(figsize=(6, 4))
+            plt.bar(labels, values, color=["blue", "gray"])
+            plt.ylabel("XP")
+            plt.title("XP Progress to Next Level")
+            
+            # Show values on top of bars
+            for i, v in enumerate(values):
+                plt.text(i, v + 5, str(v), ha='center', fontsize=12)
+
+            plt.show()
+
+
+
+
         
         #if the user wants to view backstory and name:
         elif choice == "3":
