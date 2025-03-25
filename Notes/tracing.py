@@ -23,9 +23,17 @@
 #F5---Python File or go to view---debug console
 
 #_________________________________________4.What is testing?
-#_________________________________________5.What are boundary conditions?
-#_________________________________________6.How do you handle when users give strange inputs?
 
+#Going through code to actively try to break it
+
+#_________________________________________5.What are boundary conditions?
+
+#user inputs that are strange/ extremes, highs, and lows, inbetweens, commonly done wrong inputs
+
+#_________________________________________6.How do you handle when users give strange inputs?
+#1. Try-else
+#2. User inputs in a loop
+#3. If-else
 
 def add(num1,num2):
     subtract(1,56)
