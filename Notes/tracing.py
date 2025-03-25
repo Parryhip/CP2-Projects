@@ -20,7 +20,7 @@
 
 #_________________________________________3.How do you access the debugger in VS Code?
 
-#F5
+#F5---Python File or go to view---debug console
 
 #_________________________________________4.What is testing?
 #_________________________________________5.What are boundary conditions?
