@@ -1,0 +1,4 @@
+penny-0.01,nickel-0.05,dime-0.1,quarter-0.25
+1yen-1,5yen-5,10yen-10,50yen-50,100yen-100,500yen-500
+1cent-0.01,2cent-0.02,5cent-0.05,10cent-0.1,20cent-0.2,50cent-0.5,1euro-1,2euro-2
+1pence-0.01,2pence-0.02,5pence-0.05,10pence-0.1,20pence-0.2,50pence-0.5,1pound-1,2pound-2
