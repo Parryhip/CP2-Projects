@@ -25,3 +25,6 @@ def main():
             break
         else:
             print("Invalid input!")
+
+#calling of the main function
+main()
