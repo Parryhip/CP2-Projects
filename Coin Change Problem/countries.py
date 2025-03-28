@@ -39,20 +39,25 @@ def US():
 
             #list to be able to modify of the coins
             possible_coins = items.copy()
-            
-            #iterates over every coin
-            for coin in possible_coins:
-                #if the biggest item's value is less than or equal to the user amount 
-                if possible_coins[-1][1] <= amount:
-                    #subtract the coin amount from the user amount
-                    amount -= possible_coins[-1][1]
-                    #append the coin onto the usedcoins list
-                    usedcoins.append(possible_coins[-1][0])
 
-                #if the biggest coin is less than the amount left
-                else:
-                    #remove it from the possible coin list
-                    possible_coins.pop(-1)
+            #loops until the amount left is 0
+            while amount != 0 or amount < 0.01:
+                #iterates over every coin
+                for coin in possible_coins:
+                    #if the biggest item's value is less than or equal to the user amount 
+                    if possible_coins[-1][1] <= amount:
+                        #subtract the coin amount from the user amount
+                        amount -= round(possible_coins[-1][1], 2)
+
+                        #append the coin onto the usedcoins list
+                        usedcoins.append(possible_coins[-1][0])
+                        print(amount)
+                    #if the biggest coin is less than the amount left
+                    else:
+                        #remove it from the possible coin list
+                        possible_coins.pop(-1)
+                if amount < 0.01:
+                    break
 
             #prints the change
             print("Your change is:")
@@ -116,19 +121,23 @@ def EU():
             #list to be able to modify of the coins
             possible_coins = items.copy()
             
-            #iterates over every coin
-            for coin in possible_coins:
-                #if the biggest item's value is less than or equal to the user amount 
-                if possible_coins[-1][1] <= amount:
-                    #subtract the coin amount from the user amount
-                    amount -= possible_coins[-1][1]
-                    #append the coin onto the usedcoins list
-                    usedcoins.append(possible_coins[-1][0])
+            #loops until the amount left is 0
+            while amount != 0 or amount < 0.01:
+                #iterates over every coin
+                for coin in possible_coins:
+                    #if the biggest item's value is less than or equal to the user amount 
+                    if possible_coins[-1][1] <= amount:
+                        #subtract the coin amount from the user amount
+                        amount -= round(possible_coins[-1][1], 2)
+                        #append the coin onto the usedcoins list
+                        usedcoins.append(possible_coins[-1][0])
 
-                #if the biggest coin is less than the amount left
-                else:
-                    #remove it from the possible coin list
-                    possible_coins.pop(-1)
+                    #if the biggest coin is less than the amount left
+                    else:
+                        #remove it from the possible coin list
+                        possible_coins.pop(-1)
+                if amount < 0.01:
+                    break
             
             #prints the change
             print("Your change is:")
@@ -188,24 +197,28 @@ def JP():
                     items.append([itemname,float(itemvalue)])
                 #breaks out of loop because we just want the third line
                 break
-            print(items)
+
             #list to be able to modify of the coins
             possible_coins = items.copy()
 
-            #iterates over every coin
-            for coin in possible_coins:
-                #if the biggest item's value is less than or equal to the user amount 
-                if possible_coins[-1][1] <= amount:
-                    #subtract the coin amount from the user amount
-                    amount -= possible_coins[-1][1]
-                    #append the coin onto the usedcoins list
-                    usedcoins.append(possible_coins[-1][0])
+            #loops until the amount left is 0
+            while amount != 0 or amount < 1:
+                #iterates over every coin
+                for coin in possible_coins:
+                    #if the biggest item's value is less than or equal to the user amount 
+                    if possible_coins[-1][1] <= amount:
+                        #subtract the coin amount from the user amount
+                        amount -= round(possible_coins[-1][1], 2)
+                        #append the coin onto the usedcoins list
+                        usedcoins.append(possible_coins[-1][0])
 
-                #if the biggest coin is less than the amount left
-                else:
-                    #remove it from the possible coin list
-                    possible_coins.pop(-1)
-            print(usedcoins)
+                    #if the biggest coin is less than the amount left
+                    else:
+                        #remove it from the possible coin list
+                        possible_coins.pop(-1)
+                if amount < 0.01:
+                    break
+
             #prints the change
             print("Your change is:")
 
@@ -268,19 +281,23 @@ def EN():
             #list to be able to modify of the coins
             possible_coins = items.copy()
 
-            #iterates over every coin
-            for coin in possible_coins:
-                #if the biggest item's value is less than or equal to the user amount 
-                if possible_coins[-1][1] <= amount:
-                    #subtract the coin amount from the user amount
-                    amount -= possible_coins[-1][1]
-                    #append the coin onto the usedcoins list
-                    usedcoins.append(possible_coins[-1][0])
+            #loops until the amount left is 0
+            while amount != 0 or amount < 0.01:
+                #iterates over every coin
+                for coin in possible_coins:
+                    #if the biggest item's value is less than or equal to the user amount 
+                    if possible_coins[-1][1] <= amount:
+                        #subtract the coin amount from the user amount
+                        amount -= round(possible_coins[-1][1], 2)
+                        #append the coin onto the usedcoins list
+                        usedcoins.append(possible_coins[-1][0])
 
-                #if the biggest coin is less than the amount left
-                else:
-                    #remove it from the possible coin list
-                    possible_coins.pop(-1)
+                    #if the biggest coin is less than the amount left
+                    else:
+                        #remove it from the possible coin list
+                        possible_coins.pop(-1)
+                if amount < 0.01:
+                    break
 
             #prints the change
             print("Your change is:")

@@ -1,4 +1,4 @@
-penny-0.01,nickel-0.05,dime-0.1,quarter-0.25,50 cent-0.5,dollar coin-1
-1 cent-0.01,2 cent-0.02,5 cent-0.05,10 cent-0.1,20 cent-0.2,50 cent-0.5,1 euro-1,2 euro-2
-1 yen-1,5 yen-5,10 yen-10,50 yen-50,100 yen-100,500 yen-500
-1 pence-0.01,2 pence-0.02,5 pence-0.05,10 pence-0.1,20 pence-0.2,50 pence-0.5,1 pound-1,2 pound-2
+penny-0.01,nickel-0.05,dime-0.1,quarter-0.25,50 cent-0.5,1 dollar bill-1,2 dollar bill-2,5 dollar bill-5,10 dollar bill-10,20 dollar bill-20,50 dollar bill-50,100 dollar bill-100
+1 euro cent-0.01,2 euro cents-0.02,5 euro cents-0.05,10 euro cents-0.1,20 euro cents-0.2,50 euro cents-0.5,1 euro-1,2 euro-2,5 euro-5,10 euro-10,20 euro-20,50 euro-50,100 euro-100,200 euro-200,500 euro-500
+1 yen-1,5 yen-5,10 yen-10,50 yen-50,100 yen-100,500 yen-500,1000 yen-1000,2000 yen-2000,5000 yen-5000,10000 yen-10000
+1 pence-0.01,2 pence-0.02,5 pence-0.05,10 pence-0.1,20 pence-0.2,50 pence-0.5,1 pound-1,2 pound-2,5 pound-5,10 pound-10,20 pound-20,50 pound-50
