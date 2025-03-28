@@ -11,7 +11,7 @@ from countries import EN
 def main():
     print("Welcome to the coin change problem! \nThis program will calculate the least number of coins to get an amount in usd, yen, euros, and pounds!")
     while True:
-        country = input("What country do you want to make change in? (1 for United States, 2 for Europe, 3 for Japan, 4 for England, or type 5 to exit)")
+        country = input("What country do you want to make change in? (1 for United States, 2 for Europe, 3 for Japan, 4 for England, or type 5 to exit)\n-->")
         if country == "1":
             US()
         elif country == "2":
