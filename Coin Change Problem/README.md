@@ -24,18 +24,11 @@ Sort paragraph here, maybe a bulleted list
 
 ## Used Technologies
 ---
-+ Name of the tech - what it does in the project
-`pip install instructions`
-+ Name of the tech - what it does in the project
-`pip install instructions`
-+ Name of the tech - what it does in the project
-`pip install instructions`  
 
 ## Current Features
 ---
 + Is able to calculate every single bill as well as every single coin
-+ List of cool things your project does
-+ List of cool things your project does  
++ Very easy to see, good visual
 
 ## Contributing
 ---

@@ -47,11 +47,12 @@ def US():
                     #if the biggest item's value is less than or equal to the user amount 
                     if possible_coins[-1][1] <= amount:
                         #subtract the coin amount from the user amount
-                        amount -= round(possible_coins[-1][1], 2)
+                        amount -= float(round(possible_coins[-1][1], 2))
 
                         #append the coin onto the usedcoins list
                         usedcoins.append(possible_coins[-1][0])
                         print(amount)
+                        amount = round(amount, 2)
                     #if the biggest coin is less than the amount left
                     else:
                         #remove it from the possible coin list
@@ -131,7 +132,7 @@ def EU():
                         amount -= round(possible_coins[-1][1], 2)
                         #append the coin onto the usedcoins list
                         usedcoins.append(possible_coins[-1][0])
-
+                        amount = round(amount, 2)
                     #if the biggest coin is less than the amount left
                     else:
                         #remove it from the possible coin list
@@ -211,6 +212,7 @@ def JP():
                         amount -= round(possible_coins[-1][1], 2)
                         #append the coin onto the usedcoins list
                         usedcoins.append(possible_coins[-1][0])
+                        amount = round(amount, 2)
 
                     #if the biggest coin is less than the amount left
                     else:
@@ -291,7 +293,8 @@ def EN():
                         amount -= round(possible_coins[-1][1], 2)
                         #append the coin onto the usedcoins list
                         usedcoins.append(possible_coins[-1][0])
-
+                        amount = round(amount, 2)
+                        
                     #if the biggest coin is less than the amount left
                     else:
                         #remove it from the possible coin list
