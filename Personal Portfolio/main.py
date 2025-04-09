@@ -122,9 +122,11 @@ def main():
             programs()
         elif choice == "2":
             descriptions()
-        else:
+        elif choice == "3":
             print("Ok, bye!")
             return
+        else:
+            print("Invalid input!")
 
 #calling of the main function
 main()
