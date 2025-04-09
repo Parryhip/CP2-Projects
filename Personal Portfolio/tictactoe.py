@@ -224,15 +224,19 @@ def game():
         elif row1[2] == "O" and row2[2] == "O" and row3[2] == "O":
             print("You lost!")
             break
-while play_again == "y" or play_again == "Y":
-    play_again = input("Do you want to play tic tac toe?(y/n): ")
-    if play_again == "y":
-        row1 = ["", "", ""]
-        row2 = ["", "", ""]
-        row3 = ["", "", ""]
-        game()
-    elif play_again == "n":
-        print("Ok bye!")
-    else:
-        print("Not a valid input.")
+
+def restart_tictactoe():
+    play_again = "y"
+    while play_again == "y" or play_again == "Y":
         play_again = input("Do you want to play tic tac toe?(y/n): ")
+        if play_again == "y":
+            row1 = ["", "", ""]
+            row2 = ["", "", ""]
+            row3 = ["", "", ""]
+            game()
+        elif play_again == "n":
+            print("Ok bye!")
+        else:
+            print("Not a valid input.")
+            play_again = input("Do you want to play tic tac toe?(y/n): ")
+
