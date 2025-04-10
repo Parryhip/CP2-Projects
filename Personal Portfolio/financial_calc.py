@@ -23,7 +23,7 @@ def tip_calculator(purchase, tip_percent):
     total = int(purchase) + int(purchase)*(int(tip_percent)/100)
     print("With a tip of "+tip_percent+"%, the new sale is $"+str(total)+"!")
     print("That is a $"+str(int(total)-int(purchase))+" difference from the original sale of $"+purchase+"!")
-def main():
+def main_finance():
     print("Welcome to the financial calculator!")
     while True:
         print("\n")
@@ -76,4 +76,3 @@ def main():
             break
         else:
             print("Not a valid input!")
-main()

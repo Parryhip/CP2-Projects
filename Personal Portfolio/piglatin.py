@@ -17,7 +17,9 @@ def switch(word):
                 newword.append("ay")
                 break
     return newword
-wordtochange = input("What word should I switch to piglatin?")
-newword = switch(wordtochange)
-newwordtostring = "".join(newword)
-print(newwordtostring)
+
+def main_piglatin():
+    wordtochange = input("What word should I switch to piglatin?")
+    newword = switch(wordtochange)
+    newwordtostring = "".join(newword)
+    print(newwordtostring)

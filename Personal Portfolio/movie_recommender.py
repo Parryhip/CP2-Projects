@@ -354,7 +354,7 @@ def view():
                 print(f"{attribute}: {values}")
 
 #main function
-def main():
+def main_movie_recommender():
     print("Welcome to the movie recommender!")
     while True:
         choice = input("Type 1 to search, Type 2 to view the whole list, and type 3 to exit.\n-->")
@@ -366,5 +366,3 @@ def main():
             print("Ok, bye!")
             break
 
-#calling of the main/user interface function
-main()

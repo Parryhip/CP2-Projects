@@ -120,7 +120,7 @@ def play_again():
             return False
         else:
             print("Invalid input.")
-            time.sleep(1.5)
+            time.sleep(1)
             continue
 def plyrturn():
     while True:
@@ -128,22 +128,22 @@ def plyrturn():
         if plyraction == "1":
             if current_room == "room9":
                 print("You attack with your sword.")
-                time.sleep(1.5)
+                time.sleep(1)
                 print("Rolling die for attack...")
-                time.sleep(1.5)
+                time.sleep(1)
                 attack = random.randint(1,20)
                 print("You got a " + str(attack) + ".")
-                time.sleep(1.5)
+                time.sleep(1)
                 overall_attack = str((plyrstats['strength']//3)+attack)
                 print("With your +"+ str(plyrstats['strength']//3) +" modifier means that you end with a "+overall_attack+".")
-                time.sleep(1.5)
+                time.sleep(1)
                 print(random.choice(listofanamotopoeia))
-                time.sleep(1.5)
+                time.sleep(1)
                 print("You hit the final boss for "+overall_attack+".")
                 final_boss['hp'] -= int(overall_attack)
-                time.sleep(1.5)
+                time.sleep(1)
                 print("The final_boss's hp is now "+str(final_boss['hp']) +".")
-                time.sleep(1.5)
+                time.sleep(1)
                 if final_boss['hp'] <= 0:
                     print("You killed the final boss!")
                     return 'theywon'
@@ -152,22 +152,22 @@ def plyrturn():
                     return 'enemynotdead'
             else:
                 print("You attack with your sword.")
-                time.sleep(1.5)
+                time.sleep(1)
                 print("Rolling die for attack...")
-                time.sleep(1.5)
+                time.sleep(1)
                 attack = random.randint(1,20)
                 print("You got a " + str(attack) + ".")
-                time.sleep(1.5)
+                time.sleep(1)
                 overall_attack = str((plyrstats['strength']//3)+attack)
                 print("With your +"+ str(plyrstats['strength']//3) +" modifier means that you end with a "+overall_attack+".")
-                time.sleep(1.5)
+                time.sleep(1)
                 print(random.choice(listofanamotopoeia))
-                time.sleep(1.5)
+                time.sleep(1)
                 print("You hit the monster for "+overall_attack+".")
                 normal_enemy['hp'] -= int(overall_attack)
-                time.sleep(1.5)
+                time.sleep(1)
                 print("The monster's hp is now "+str(normal_enemy['hp']) +".")
-                time.sleep(1.5)
+                time.sleep(1)
                 if normal_enemy['hp'] <= 0:
                     print("You killed the enemy!")
                     return 'enemydead'
@@ -176,9 +176,9 @@ def plyrturn():
                     return 'enemynotdead'
         elif plyraction == "2":
             print("These are the potions that you have:")
-            time.sleep(1.5)
+            time.sleep(1)
             print(plyrstats['potioninventory'])
-            time.sleep(1.5)
+            time.sleep(1)
             while True:
                 potiontouse = input("What potion do you want to use?(use the exact name of the item) or type exit to exit the potion menu.")
                 if potiontouse in plyrstats['potioninventory']:
@@ -202,12 +202,12 @@ def plyrturn():
                     break
                 else:
                     print("You do not have that potion!")
-                    time.sleep(1.5)
+                    time.sleep(1)
         elif plyraction == "3":
             print("These are the spells that you have:")
-            time.sleep(1.5)
+            time.sleep(1)
             print(plyrstats['spellinventory'])
-            time.sleep(1.5)
+            time.sleep(1)
             while True:
                 spelltouse = input("What spell do you want to use?(use the exact name of the item) or type exit to exit the spell menu.")
                 if spelltouse in plyrstats['spellinventory']:
@@ -218,7 +218,7 @@ def plyrturn():
                         if current_room == "room9":
                             final_boss['hp'] -= 20
                             print("You hit the final boss for 20.")
-                            time.sleep(1.5)
+                            time.sleep(1)
                             print("The final boss's hp is now "+str(final_boss['hp'] +"."))
                             if final_boss['hp'] <= 0:
                                 print("You killed the final_boss!")
@@ -229,9 +229,9 @@ def plyrturn():
                         else:
                             normal_enemy['hp'] -= 20
                             print("You hit the monster for 20.")
-                            time.sleep(1.5)
+                            time.sleep(1)
                             print("The monster's hp is now "+str(normal_enemy['hp'] +"."))
-                            time.sleep(1.5)
+                            time.sleep(1)
                             if normal_enemy['hp'] <= 0:
                                 print("You killed the enemy!")
                                 return 'enemydead'
@@ -244,27 +244,27 @@ def plyrturn():
                         if current_room == "room9":
                             final_boss['speed'] -= 10
                             print("You decrease the final boss's speed by 10.")
-                            time.sleep(1.5)
+                            time.sleep(1)
                             print("The final boss's speed is now "+str(final_boss['speed'] +"."))
                             return 'enemynotdead'
                         else:
                             normal_enemy['speed'] -= 10
                             print("You decrease the monster's speed by 10.")
-                            time.sleep(1.5)
+                            time.sleep(1)
                             print("The monster's speed is now "+str(normal_enemy['speed'] +"."))
-                            time.sleep(1.5)
+                            time.sleep(1)
                             return 'enemynotdead'
                 elif spelltouse == "exit":
                     break
                 else:
                     print("You do not have that spell!")
-                    time.sleep(1.5)
+                    time.sleep(1)
         elif plyraction == "4":
             print("These are the weapons that you have:")
             print(plyrstats['weaponinventory'])
-            time.sleep(1.5)
+            time.sleep(1)
             print("The weapon currently equipped is your "+ plyrstats['weaponcurrentlyequipped']+".")
-            time.sleep(1.5)
+            time.sleep(1)
             while True:
                 weapontoequip = input("What weapon do you want to equip?(use the exact name of the item) or type exit to exit the weapon menu.")
                 if weapontoequip in plyrstats['weaponinventory']:
@@ -300,26 +300,26 @@ def plyrturn():
                     break
                 else:
                     print("You do not have that weapon!")
-                    time.sleep(1.5)
+                    time.sleep(1)
         elif plyraction == "5":
             print("You try to run away.")
             monsterwantstoblock = random.randint(0,1)
             if monsterwantstoblock == 1:
                 if current_room == "room9":
                     print("The final boss is trying to block you.")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     print("Rolling die for final boss...")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     monsterrolltoblock = random.randint(1,20)
                     print("The final boss got a "+str(monsterrolltoblock)+".")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     print("With the final boss's modifier of +"+str(final_boss['speed']//3)+" means that the final boss got a "+str(monsterrolltoblock+normal_enemy['speed']//3))
-                    time.sleep(1.5)
+                    time.sleep(1)
                     print("Rolling die for you...")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     plyrrolltorunaway = random.randint(1,20)
                     print("You got a "+str(plyrrolltorunaway))
-                    time.sleep(1.5)
+                    time.sleep(1)
                     print("With your modifier of +"+str(plyrstats['speed']//3)+" means that you got a "+ str(plyrrolltorunaway+plyrstats['speed']//3))
                     if (plyrrolltorunaway+plyrstats['speed']//3) > (monsterrolltoblock+normal_enemy['speed']//3):
                         print("You got away!")
@@ -329,19 +329,19 @@ def plyrturn():
                         return "enemynotdead"
                 else:
                     print("The monster is trying to block you.")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     print("Rolling die for monster...")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     monsterrolltoblock = random.randint(1,20)
                     print("The monster got a "+str(monsterrolltoblock)+".")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     print("With the monster's modifier of +"+str(normal_enemy['speed']//3)+" means that the monster got a "+str(monsterrolltoblock+normal_enemy['speed']//3))
-                    time.sleep(1.5)
+                    time.sleep(1)
                     print("Rolling die for you...")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     plyrrolltorunaway = random.randint(1,20)
                     print("You got a "+str(plyrrolltorunaway))
-                    time.sleep(1.5)
+                    time.sleep(1)
                     print("With your modifier of +"+str(plyrstats['speed']//3)+" means that you got a "+ str(plyrrolltorunaway+plyrstats['speed']//3))
                     if (plyrrolltorunaway+plyrstats['speed']//3) > (monsterrolltoblock+normal_enemy['speed']//3):
                         print("You got away!")
@@ -365,22 +365,22 @@ def monsterturn():
         monsteraction = str(random.randint(1,3))
         if monsteraction == "1":
             print("The final boss is attacking with their greatsword!")
-            time.sleep(1.5)
+            time.sleep(1)
             print("Rolling die for attack...")
-            time.sleep(1.5)
+            time.sleep(1)
             attack = random.randint(1,20)
             print("The final boss got a " + str(attack) + ".")
-            time.sleep(1.5)
+            time.sleep(1)
             overall_attack = str((final_boss['strength']//3)+attack)
             print("With their +"+ str(final_boss['strength']//3) +" modifier means that the final boss ends with a "+overall_attack+".")
-            time.sleep(1.5)
+            time.sleep(1)
             print(random.choice(listofanamotopoeia))
-            time.sleep(1.5)
+            time.sleep(1)
             print("The final boss hits you for "+overall_attack+".")
             plyrstats['hp'] -= int(overall_attack)
-            time.sleep(1.5)
+            time.sleep(1)
             print("Your hp is now "+str(plyrstats['hp'] +"."))
-            time.sleep(1.5)
+            time.sleep(1)
             if plyrstats['hp'] <= 0:
                 print("Sadly, you have died to the final boss, ruler of all the dungeon.")
                 return 'playerdead'
@@ -406,9 +406,9 @@ def monsterturn():
                 if spelltousemonster == "fireball":
                     plyrstats['hp'] -= 20
                     print("The final boss hits you for 20.")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     print("Your hp is now "+str(plyrstats['hp']) +".")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     if plyrstats['hp'] <= 0:
                         print("Sadly, you have died to the final boss, ruler of all the dungeon.")
                         return 'playerdead'
@@ -418,9 +418,9 @@ def monsterturn():
                 elif spelltousemonster == "slow spell":
                     plyrstats['speed'] -= 10
                     print("The final boss decreases your speed by 10.")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     print("Your speed is now "+str(plyrstats['speed']) +".")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     return 'playernotdead'
     else:
         if normal_enemy['hp'] <= 5:
@@ -430,20 +430,20 @@ def monsterturn():
                 plyrwantstoblock = input("Do you want to block the monster")
                 if plyrwantstoblock.lower() == "y":
                     print("You try to block the monster")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     print("Rolling die for you...")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     plyrrolltorunaway = random.randint(1,20)
                     print("You got a "+str(plyrrolltorunaway))
-                    time.sleep(1.5)
+                    time.sleep(1)
                     print("With your modifier of +"+str(plyrstats['speed']//3)+" means that you got a "+ str(plyrrolltorunaway+plyrstats['speed']//3))
                     print("Rolling die for monster...")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     monsterrolltoblock = random.randint(1,20)
                     print("The monster got a "+str(monsterrolltoblock)+".")
-                    time.sleep(1.5)
+                    time.sleep(1)
                     print("With the monster's modifier of +"+str(normal_enemy['speed']//3)+" means that the monster got a "+str(monsterrolltoblock+normal_enemy['speed']//3))
-                    time.sleep(1.5)
+                    time.sleep(1)
                     if (plyrrolltorunaway+plyrstats['speed']//3) < (monsterrolltoblock+normal_enemy['speed']//3):
                         print("The monster got away!")
                         return "exitcombat"
@@ -460,22 +460,22 @@ def monsterturn():
                 pass
         else:
             print("The monster is attacking!")
-            time.sleep(1.5)
+            time.sleep(1)
             print("Rolling die for attack...")
-            time.sleep(1.5)
+            time.sleep(1)
             attack = random.randint(1,20)
             print("The monster got a " + str(attack) + ".")
-            time.sleep(1.5)
+            time.sleep(1)
             overall_attack = str((normal_enemy['strength']//3)+attack)
             print("With their +"+ str(normal_enemy['strength']//3) +" modifier means that the monster ends with a "+overall_attack+".")
-            time.sleep(1.5)
+            time.sleep(1)
             print(random.choice(listofanamotopoeia))
-            time.sleep(1.5)
+            time.sleep(1)
             print("The monster hits you for "+overall_attack+".")
             plyrstats['hp'] -= int(overall_attack)
-            time.sleep(1.5)
+            time.sleep(1)
             print("Your hp is now "+str(plyrstats['hp']) +".")
-            time.sleep(1.5)
+            time.sleep(1)
             if plyrstats['hp'] <= 0:
                 print("Sadly, you have died.")
                 return 'playerdead'
@@ -585,7 +585,7 @@ def loot():
             chest = 'legendary'
     if chest == "common":
         print("The chest in the room is a common chest!")
-        time.sleep(1.5)
+        time.sleep(1)
         commonloottype = random.randint(1,2)
         if commonloottype == 1:
             commonchestitem = random.choice(common_chest['potioninventory'])
@@ -596,7 +596,7 @@ def loot():
         print("You got a "+commonchestitem+"!")
     elif chest == "rare":
         print("The chest in the room is a rare chest!")
-        time.sleep(1.5)
+        time.sleep(1)
         rareloottype = random.randint(1,3)
         if rareloottype == 1:
             rarechestitem = random.choice(rare_chest['potioninventory'])
@@ -610,7 +610,7 @@ def loot():
         print("You got a "+rarechestitem+"!")
     elif chest == "legendary":
         print("The chest in the room is a legendary chest!")
-        time.sleep(1.5)
+        time.sleep(1)
         legendaryloottype = random.randint(1,3)
         if legendaryloottype == 1:
             legendarychestitem = random.choice(legendary_chest['potioninventory'])
@@ -624,7 +624,7 @@ def loot():
         print("You got a "+legendarychestitem+"!")
 def combat():
     print("Rolling dice for who goes first in combat...")
-    time.sleep(1.5)
+    time.sleep(1)
     global current_room
     if current_room == "room9":
         finalbossincombat = True
@@ -634,15 +634,15 @@ def combat():
         plyrrollforcombat = random.randint(1,20)
         overallrollplyr = plyrrollforcombat + plyrstats['speed']//3
         print("You rolled a "+str(plyrrollforcombat)+".")
-        time.sleep(1.5)
+        time.sleep(1)
         print("With your +"+str(plyrstats['speed']//3)+" modifier it means that you got a "+str(overallrollplyr)+".")
-        time.sleep(1.5)
+        time.sleep(1)
         final_bossrollforcombat = random.randint(1,20)
         overallrollenemy = final_bossrollforcombat + final_boss['speed']//3
         print("The final boss rolled a "+str(final_bossrollforcombat)+".")
-        time.sleep(1.5)
+        time.sleep(1)
         print("With their +"+str(final_boss['speed']//3)+" modifier it means that they got a "+str(overallrollenemy)+".")
-        time.sleep(1.5)
+        time.sleep(1)
         if overallrollenemy > overallrollplyr:
             enemygoesfirst = True
             plyrgoesfirst = False
@@ -657,15 +657,15 @@ def combat():
         plyrrollforcombat = random.randint(1,20)
         overallrollplyr = plyrrollforcombat + plyrstats['speed']//3
         print("You rolled a "+str(plyrrollforcombat)+".")
-        time.sleep(1.5)
+        time.sleep(1)
         print("With your +"+str(plyrstats['speed']//3)+" means that you got a "+str(overallrollplyr)+".")
-        time.sleep(1.5)
+        time.sleep(1)
         enemyrollforcombat = random.randint(1,20)
         overallrollenemy = enemyrollforcombat + normal_enemy['speed']//3
         print("The monster rolled a "+str(enemyrollforcombat)+".")
-        time.sleep(1.5)
+        time.sleep(1)
         print("With their +"+str(normal_enemy['speed']//3)+" means that they got a "+str(overallrollenemy)+".")
-        time.sleep(1.5)
+        time.sleep(1)
         if overallrollenemy > overallrollplyr:
             enemygoesfirst = True
             plyrgoesfirst = False
@@ -714,180 +714,180 @@ def room_details():
     if current_room == "room1":
         if room1['monster_probability'] > random.randint(1,100):
             print("There is a monster in this room!")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = True
             if room1['final_boss'] == True:
                 print("You are facing the final boss!")
-                time.sleep(1.5)
+                time.sleep(1)
             else:
                 print("You are facing a normal monster!")
-                time.sleep(1.5)
+                time.sleep(1)
         else:
             print("There is not a monster in this room.")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = False
         print("You can access these rooms:")
-        time.sleep(1.5)
+        time.sleep(1)
         for i in room1['room_accesses']:
             print(str(i)+",", end="")
         return is_monster
     elif current_room == "room2":
         if room2['monster_probability'] > random.randint(1,100):
             print("There is a monster in this room!")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = True
             if room2['final_boss'] == True:
                 print("You are facing the final boss!")
-                time.sleep(1.5)
+                time.sleep(1)
             else:
                 print("You are facing a normal monster!")
-                time.sleep(1.5)
+                time.sleep(1)
         else:
             print("There is not a monster in this room.")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = False
         print("You can access these rooms:")
-        time.sleep(1.5)
+        time.sleep(1)
         for i in room2['room_accesses']:
             print(str(i)+",", end="")
         return is_monster
     elif current_room == "room3":
         if room3['monster_probability'] > random.randint(1,100):
             print("There is a monster in this room!")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = True
             if room3['final_boss'] == True:
                 print("You are facing the final boss!")
-                time.sleep(1.5)
+                time.sleep(1)
             else:
                 print("You are facing a normal monster!")
-                time.sleep(1.5)
+                time.sleep(1)
         else:
             print("There is not a monster in this room.")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = False
         print("You can access these rooms:")
-        time.sleep(1.5)
+        time.sleep(1)
         for i in room3['room_accesses']:
             print(str(i)+",", end="")
         return is_monster
     elif current_room == "room4":
         if room4['monster_probability'] > random.randint(1,100):
             print("There is a monster in this room!")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = True
             if room4['final_boss'] == True:
                 print("You are facing the final boss!")
-                time.sleep(1.5)
+                time.sleep(1)
             else:
                 print("You are facing a normal monster!")
-                time.sleep(1.5)
+                time.sleep(1)
         else:
             print("There is not a monster in this room.")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = False
         print("You can access these rooms:")
-        time.sleep(1.5)
+        time.sleep(1)
         for i in room4['room_accesses']:
             print(str(i)+",", end="")
         return is_monster
     elif current_room == "room5":
         if room5['monster_probability'] > random.randint(1,100):
             print("There is a monster in this room!")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = True
             if room5['final_boss'] == True:
                 print("You are facing the final boss!")
-                time.sleep(1.5)
+                time.sleep(1)
             else:
                 print("You are facing a normal monster!")
-                time.sleep(1.5)
+                time.sleep(1)
         else:
             print("There is not a monster in this room.")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = False
         print("You can access these rooms:")
-        time.sleep(1.5)
+        time.sleep(1)
         for i in room5['room_accesses']:
             print(str(i)+",", end="")
         return is_monster
     elif current_room == "room6":
         if room6['monster_probability'] > random.randint(1,100):
             print("There is a monster in this room!")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = True
             if room6['final_boss'] == True:
                 print("You are facing the final boss!")
-                time.sleep(1.5)
+                time.sleep(1)
             else:
                 print("You are facing a normal monster!")
-                time.sleep(1.5)
+                time.sleep(1)
         else:
             print("There is not a monster in this room.")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = False
         print("You can access these rooms:")
-        time.sleep(1.5)
+        time.sleep(1)
         for i in room6['room_accesses']:
             print(str(i)+",", end="")
         return is_monster
     elif current_room == "room7":
         if room7['monster_probability'] > random.randint(1,100):
             print("There is a monster in this room!")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = True
             if room7['final_boss'] == True:
                 print("You are facing the final boss!")
-                time.sleep(1.5)
+                time.sleep(1)
             else:
                 print("You are facing a normal monster!")
-                time.sleep(1.5)
+                time.sleep(1)
         else:
             print("There is not a monster in this room.")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = False
         print("You can access these rooms:")
-        time.sleep(1.5)
+        time.sleep(1)
         for i in room7['room_accesses']:
             print(str(i)+",", end="")
         return is_monster
     elif current_room == "room8":
         if room8['monster_probability'] > random.randint(1,100):
             print("There is a monster in this room!")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = True
             if room8['final_boss'] == True:
                 print("You are facing the final boss!")
-                time.sleep(1.5)
+                time.sleep(1)
             else:
                 print("You are facing a normal monster!")
-                time.sleep(1.5)
+                time.sleep(1)
         else:
             print("There is not a monster in this room.")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = False
         print("You can access these rooms:")
-        time.sleep(1.5)
+        time.sleep(1)
         for i in room8['room_accesses']:
             print(str(i)+",", end="")
         return is_monster
     elif current_room == "room9":
         if room9['monster_probability'] > random.randint(1,100):
             print("There is a monster in this room!")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = True
             if room9['final_boss'] == True:
                 print("You are facing the final boss!")
-                time.sleep(1.5)
+                time.sleep(1)
             else:
                 print("You are facing a normal monster!")
-                time.sleep(1.5)
+                time.sleep(1)
         else:
             print("There is not a monster in this room.")
-            time.sleep(1.5)
+            time.sleep(1)
             is_monster = False
         print("You can access these rooms:")
-        time.sleep(1.5)
+        time.sleep(1)
         for i in room9['room_accesses']:
             print(str(i)+",", end="")
         return is_monster
@@ -981,7 +981,6 @@ def play():
                 plyrstats['hp'] = 50
                 current_room = "room1"
                 main()
-play()
 
     
         

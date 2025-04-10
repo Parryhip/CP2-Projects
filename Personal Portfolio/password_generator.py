@@ -66,7 +66,7 @@ def special_chars(password_length, uppers, numbers):
     return int(specials)
 
 #main function/user interface
-def main():
+def main_password_generator():
     print("Welcome to the random password generator!")
     while True:
         password_length = length()
@@ -113,5 +113,4 @@ def main():
                 return
             else:
                 print("Not a valid input!")
-main()
     
