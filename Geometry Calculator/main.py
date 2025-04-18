@@ -3,6 +3,9 @@
 #importing math
 import math
 
+#importing neccesary functions
+from shape_creation import *
+
 #lists of all shapes
 squares = []
 rectangles = []
@@ -214,7 +217,7 @@ def main():
     #main while loop
     while True:
         #main choice
-        choice = input("Type 1 to make a new shape, type 2 to view formulas for a shape, type 3 to sort shapes by an attribute, and type 4 to exit.\n-->")
+        choice = input("Type 1 to make a new shape, type 2 to view formulas for a shape, type 3 to sort shapes by an attribute, type 4 to print area/permimeter for a shape, and type 5 to exit.\n-->")
         
         #if the user wants to make a shape
         if choice == "1":
@@ -224,30 +227,99 @@ def main():
                 
                 #if the user wants to make a square
                 if shape_choice == "1":
-                    while True:
-                        #asks for the name of the square (or to exit)
-                        name = input("What is the name of your square?(or type exit to exit)\n-->")
+                    #call the create square function
+                    new_square = create_square()
 
-                        #if the user wants to exit, do so
-                        if name == "exit":
-                            break
-
-                        try:
-                            #asks the user for the length of the square
-                            side_length = input("What is the length/height of your square?\n-->")
-
-                            if side_length < 0:
-                                raise Exception("That is a number below 0!")
-
-                            #tests if the length is an integer
-                            test = float(side_length)
-                        except:
-                            print("Please input a number above 0.")
-                            continue
-                        
-                        squares.append(square(name, side_length))
-                        print("Square succesfully created!")
+                    #if the user wants to exit, do so
+                    if new_square == "exit":
                         break
+                        
+                    #add the new square to the list of all squares
+                    squares.append(new_square)
+
+                #if the user wants to make a rectangle
+                elif shape_choice == "2":
+                    #call the create rectangle function
+                    new_rectangle = create_rectangle()
+
+                    #if the user wants to exit, do so
+                    if new_rectangle == "exit":
+                        break
+                        
+                    #add the new rectangle to the list of all rectangles
+                    rectangles.append(new_rectangle)
+
+                #if the user wants to make a triangle
+                elif shape_choice == "3":
+                    #call the create triangle function
+                    new_triangle = create_triangle()
+
+                    #if the user wants to exit, do so
+                    if new_triangle == "exit":
+                        break
+                        
+                    #add the new triangle to the list of all triangles
+                    triangles.append(new_triangle)
+
+                #if the user wants to make a circle
+                elif shape_choice == "4":
+                    #call the create circle function
+                    new_circle = create_circle()
+
+                    #if the user wants to exit, do so
+                    if new_circle == "exit":
+                        break
+                        
+                    #add the new circle to the list of all circles
+                    circles.append(new_circle)
+                
+                #if the user wants to exit, do so
+                elif choice == "5":
+                    break
+
+                #if the user's input is invalid, tell them
+                else:
+                    print("Not a valid input!")
+
+        #if user wants to print out formulas
+        elif choice == "2":
+            while True:
+                #choice to view different formulas
+                formula_choice = input("Type 1 to view formulas for square, type 2 to view formulas for rectangle, type 3 to view formulas for triangle, type 4 to view formulas for circle, and type 5 to exit.")
+                test = int(formula_choice)
+
+                #if user wants to print formulas for square
+                if formula_choice == "1":
+                    square.formulas()
+
+                #if user wants to print formulas for rectangle
+                elif formula_choice == "2":
+                    rectangle.formulas()
+                    
+                #if user wants to print formulas for triangle
+                elif formula_choice == "3":
+                    triangle.formulas()
+                    
+                #if user wants to print formulas for circle
+                elif formula_choice == "4":
+                    circle.formulas()
+                    
+                #if the user wants to exit
+                elif formula_choice == "5":
+                    break
+
+                #if the user input is invalid, print that
+                else:
+                    print("Invalid input.")
+
+        #if the user wants to sort by attributes
+        elif choice == "3":
+            while True:
+                #choice to sort a specfic shape
+                sort_choice = input("Type 1 to sort squares, type 2 to sort rectangles, type 3 to sort triangles, type 4 to sort circles, ande type 5 to exit.")
+
+                #if the user wants to sort squares
+                
 
 #calling of the main function
 main()
