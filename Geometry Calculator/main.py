@@ -1,10 +1,17 @@
 #Samuel Andelin, Classes Project: Geometry Calculator
 
-#importing math
-import math
-
 #importing neccesary functions
-from shape_creation import *
+from shape_creation import create_square
+from shape_creation import create_rectangle
+from shape_creation import create_triangle
+from shape_creation import create_circle
+from sorting import sort
+
+#importing all classes
+from classes import square
+from classes import rectangle
+from classes import triangle
+from classes import circle
 
 #lists of all shapes
 squares = []
@@ -12,202 +19,6 @@ rectangles = []
 triangles = []
 circles = []
 
-#class for circle
-class circle:
-    #initializing self attributes
-    def __init__(self, name, radius):
-        self.radius = radius
-        self.name = name
-
-    #method for area
-    def area(self):
-        #calculate area
-        area = math.pi*(self.radius^2)
-        #print area
-        print(f"The radius of {self.name} is approximately {round(area, 2)}.")
-
-    #method for perimeter
-    def perimeter(self):
-        #calculate perimeter
-        perimeter = 2*math.pi*self.radius
-        #print perimeter
-        print(f"The perimeter of {self.name} is approximately {round(perimeter, 2)}.")
-    
-    #method to print attributes about self
-    def __str__(self):
-        return f"Name: {self.name}\nRadius: {self.radius}"
-
-    #static method to print the formulas used
-    def formulas():
-        print("Area: pi * radius^2")
-        print("Perimeter: 2*pi*radius")
-
-    #method to compare areas of circles
-    def compare_area(self, circle2):
-        if self.area > circle2.area:
-            print(f"{self.name} has the greater area!")
-        elif circle2.area > self.area:
-            print(f"{circle2.name} has the greater area!")
-        else:
-            print(f"{self.name} and {circle2.name} have the same area!")
-
-    #method to compare perimeters of circles
-    def compare_perimeter(self, circle2):
-        if self.perimeter > circle2.perimeter:
-            print(f"{self.name} has the greater perimeter!")
-        elif circle2.perimeter > self.perimeter:
-            print(f"{circle2.name} has the greater perimeter!")
-        else:
-            print(f"{self.name} and {circle2.name} have the same size of perimeter!")
-
-#class for rectangle
-class rectangle:
-    #initializing self attributes
-    def __init__(self, name, length, height):
-        self.length = length
-        self.height = height
-        self.name = name
-
-    #method for area
-    def area(self):
-        #calculate area
-        area = self.length*self.height
-        #print area
-        print(f"The area of {self.name} is approximately {round(area, 2)}.")
-
-    #method for perimeter
-    def perimeter(self):
-        #calculate perimeter
-        perimeter = (2 * self.length) + (2*self.height)
-        #print perimeter
-        print(f"The perimeter of {self.name} is approximately {round(perimeter, 2)}.")
-    
-    #method to print attributes about self
-    def __str__(self):
-        return f"Name: {self.name}\nLength: {self.length}\nHeight: {self.height}"
-
-    #static method to print the formulas used
-    def formulas():
-        print("Area: length*height")
-        print("Perimeter: 2*length + 2*height")
-
-    #method to compare areas of rectangles
-    def compare_area(self, rect2):
-        if self.area > rect2.area:
-            print(f"{self.name} has the greater area!")
-        elif rect2.area > self.area:
-            print(f"{rect2.name} has the greater area!")
-        else:
-            print(f"{self.name} and {rect2.name} have the same size of area!")
-
-    #method to compare perimeters of rectangles
-    def compare_perimeter(self, rectangle2):
-        if self.perimeter > rectangle2.perimeter:
-            print(f"{self.name} has the greater perimeter!")
-        elif rectangle2.perimeter > self.perimeter:
-            print(f"{rectangle2.name} has the greater perimeter!")
-        else:
-            print(f"{self.name} and {rectangle2.name} have the same size of perimeter!")
-
-
-#subclass for square
-class square(rectangle):
-    #initializing self attributes
-    def __init__(self, name, length):
-        #inherits name and length from rectangle
-        super().__init__(name, length)
-    
-    #method for area
-    def area(self):
-        #calculate area
-        area = self.length^2
-        #print area
-        print(f"The area of {self.name} is approximately {round(area, 2)}.")
-    
-    #method for perimeter
-    def perimeter(self):
-        #calculate perimeter
-        perimeter = 4 * self.length
-        #print perimeter
-        print(f"The perimeter of {self.name} is approximately {round(perimeter, 2)}.")
-
-    #method to print attributes about self
-    def __str__(self):
-        return f"Name: {self.name}\nEvery Side length: {self.length}"
-    
-    #static method to print the formulas used
-    def formulas():
-        print("Area: length^2")
-        print("Perimeter: length*4")
-
-    #method to compare areas of squares
-    def compare_area(self, square2):
-        if self.area > square2.area:
-            print(f"{self.name} has the greater area!")
-        elif square2.area > self.area:
-            print(f"{square2.name} has the greater area!")
-        else:
-            print(f"{self.name} and {square2.name} have the same size of area!")
-
-    #method to compare perimeters of squares
-    def compare_perimeter(self, square2):
-        if self.perimeter > square2.perimeter:
-            print(f"{self.name} has the greater perimeter!")
-        elif square2.perimeter > self.perimeter:
-            print(f"{square2.name} has the greater perimeter!")
-        else:
-            print(f"{self.name} and {square2.name} have the same size of perimeter!")
-
-#class for triangle
-class triangle:
-    #initializing self attributes
-    def __init__(self, name, base, side2, side3, height):
-        self.name = name
-        self.base = base
-        self.height = height
-        self.side2 = side2
-        self.side3 = side3
-    
-    #method for area
-    def area(self):
-        #calculate area
-        area = (self.height * self.base)/2
-        #print area
-        print(f"The area of {self.name} is approximately {round(area, 2)}.")
-
-    #method for perimeter
-    def perimeter(self):
-        #calculate perimeter
-        perimeter = self.base + self.side2 + self.side3
-        #print perimeter
-        print(f"The perimeter of {self.name} is approximately {round(perimeter, 2)}.")
-    
-    #method to print attributes about self
-    def __str__(self):
-        return f"Name: {self.name}\nBase/Side 1 Length: {self.base}\nHeight: {self.height}\nSide 2 Length: {self.side2}\nSide 3 Length: {self.side3}"
-
-    #static method to print the formulas used
-    def formulas():
-        print("Area: 0.5*base*height")
-        print("Perimeter: base+side2+side3")
-    
-    #method to compare areas of triangles
-    def compare_area(self, triangle2):
-        if self.area > triangle2.area:
-            print(f"{self.name} has the greater area!")
-        elif triangle2.area > self.area:
-            print(f"{triangle2.name} has the greater area!")
-        else:
-            print(f"{self.name} and {triangle2.name} have the same size of area!")
-
-    #method to compare perimeters of triangles
-    def compare_perimeter(self, triangle2):
-        if self.perimeter > triangle2.perimeter:
-            print(f"{self.name} has the greater perimeter!")
-        elif triangle2.perimeter > self.perimeter:
-            print(f"{triangle2.name} has the greater perimeter!")
-        else:
-            print(f"{self.name} and {triangle2.name} have the same size of perimeter!")
 
 #main function
 def main():
@@ -217,7 +28,7 @@ def main():
     #main while loop
     while True:
         #main choice
-        choice = input("Type 1 to make a new shape, type 2 to view formulas for a shape, type 3 to sort shapes by an attribute, type 4 to print area/permimeter for a shape, and type 5 to exit.\n-->")
+        choice = input("Type 1 to make a new shape, \ntype 2 to view formulas for a shape, \ntype 3 to sort shapes by an attribute, \ntype 4 to print attributes for a shape, \ntype 5 to view all shape names, \ntype 6 to compare two shapes, \nand type 7 to exit.\n-->")
         
         #if the user wants to make a shape
         if choice == "1":
@@ -319,7 +130,196 @@ def main():
                 sort_choice = input("Type 1 to sort squares, type 2 to sort rectangles, type 3 to sort triangles, type 4 to sort circles, ande type 5 to exit.")
 
                 #if the user wants to sort squares
+                if sort_choice == "1":
+                    sort(squares)
                 
+                #if the user wants to sort rectangles
+                elif sort_choice == "2":
+                    sort(rectangles)
+
+                #if the user wants to sort triangles
+                elif sort_choice == "3":
+                    sort(triangles)
+
+                #if the user wants to sort circles
+                elif sort_choice == "4":
+                    sort(circles)
+
+                #if the user wants to exit
+                elif sort_choice == "5":
+                    break
+
+        #if the user wants to see attributes for a shape
+        elif choice == "4":
+            while True:
+                #input for the name of the shape the user wants to view attributes for
+                shape_name = input("What is the name of the shape you want to see attributes for?(Or type exit to exit)(You can view all names of shapes in option 5 in the first choice)\n-->")
+                
+                #if the user wants to exit
+                if shape_name == "exit":
+                    break
+
+                #variable to hold the target shape
+                targetitem = None
+
+                #checking if the name of the shape is in the squares list
+                for square in squares:
+                    if shape_name.strip() == square.name.strip():
+                        targetitem = square
+                        break
+                
+                #checking if the name of the shape is in the rectangles list
+                for rectangle in rectangles:
+                    if shape_name.strip() == rectangle.name.strip():
+                        targetitem = rectangle
+                        break
+
+                #checking if the name of the shape is in the triangles list
+                for triangle in triangles:
+                    if shape_name.strip() == triangle.name.strip():
+                        targetitem = triangle
+                        break
+
+                #checking if the name of the shape is in the circles list
+                for circle in circles:
+                    if shape_name.strip() == circle.name.strip():
+                        targetitem = circle
+                        break
+
+                #if the target item is still None, say that there is no shape with that name
+                if targetitem == None:
+                    print("No shape with that name!")
+                    continue
+
+                #print the attributes for the item via the __str__ method
+                print(targetitem)
+
+                #exit
+                break
+
+        #if the user wants to see the names of all of their shapes
+        elif choice == "5":
+            #prints all of the shapes' name
+            print("----------ALL SHAPE NAMES----------")
+            print("\n")
+            print("\n")
+            print("----------Squares----------")
+            print("\n")
+            for square in squares:
+                print(square.name)
+            print("\n")
+            print("----------Rectangles----------")
+            print("\n")
+            for rectangle in rectangles:
+                print(rectangle.name)
+            print("\n")
+            print("----------Triangles----------")
+            print("\n")
+            for triangle in triangles:
+                print(triangle.name)
+            print("\n")
+            print("----------Circles----------")
+            print("\n")
+            for circle in circles:
+                print(circle.name)
+            print("\n")
+
+        #if the user wants to compare two shapes
+        elif choice == "6":
+            while True:
+                #input for the name of the first shape the user wants to compare
+                shape_name = input("What is the name of the first shape you want to compare?(Or type exit to exit)(You can view all names of shapes in option 5 in the first choice)\n-->")
+                
+                #if the user wants to exit
+                if shape_name == "exit":
+                    break
+
+                #variable to hold the target shape
+                targetitem1 = None
+
+                #checking if the name of the shape is in the squares list
+                for square in squares:
+                    if shape_name.strip() == square.name.strip():
+                        targetitem1 = square
+                        break
+                
+                #checking if the name of the shape is in the rectangles list
+                for rectangle in rectangles:
+                    if shape_name.strip() == rectangle.name.strip():
+                        targetitem1 = rectangle
+                        break
+
+                #checking if the name of the shape is in the triangles list
+                for triangle in triangles:
+                    if shape_name.strip() == triangle.name.strip():
+                        targetitem1 = triangle
+                        break
+
+                #checking if the name of the shape is in the circles list
+                for circle in circles:
+                    if shape_name.strip() == circle.name.strip():
+                        targetitem1 = circle
+                        break
+
+                #if the target item is still None, say that there is no shape with that name
+                if targetitem1 == None:
+                    print("No shape with that name!")
+                    continue
+
+                #input for the name of the second shape the user wants to compare
+                shape_name2 = input("What is the name of the second shape you want to compare?(Or type exit to exit)(You can view all names of shapes in option 5 in the first choice)\n-->")
+                
+                #if the user wants to exit
+                if shape_name2 == "exit":
+                    break
+
+                #variable to hold the target shape
+                targetitem2 = None
+
+                #checking if the name of the shape is in the squares list
+                for square in squares:
+                    if shape_name2.strip() == square.name.strip():
+                        targetitem2 = square
+                        break
+                
+                #checking if the name of the shape is in the rectangles list
+                for rectangle in rectangles:
+                    if shape_name2.strip() == rectangle.name.strip():
+                        targetitem2 = rectangle
+                        break
+
+                #checking if the name of the shape is in the triangles list
+                for triangle in triangles:
+                    if shape_name2.strip() == triangle.name.strip():
+                        targetitem2 = triangle
+                        break
+
+                #checking if the name of the shape is in the circles list
+                for circle in circles:
+                    if shape_name2.strip() == circle.name.strip():
+                        targetitem2 = circle
+                        break
+
+                #if the target item is still None, say that there is no shape with that name
+                if targetitem2 == None:
+                    print("No shape with that name!")
+                    continue
+
+                #compares area and perimeter
+                targetitem1.compare_area(targetitem2)
+                targetitem1.compare_area(targetitem2)
+                
+                #exit
+                break
+
+        #if the user wants to exit
+        elif choice == "7":
+            print("Ok, bye!")
+            return
+        
+        #if the user's input is invalid
+        else:
+            print("Invalid input!")
 
 #calling of the main function
 main()

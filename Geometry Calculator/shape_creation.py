@@ -1,10 +1,10 @@
 #Samuel Andelin, Classes Project: Geometry Calculator
 
 #importing classes
-from main import square
-from main import rectangle
-from main import triangle
-from main import circle
+from classes import square
+from classes import rectangle
+from classes import triangle
+from classes import circle
 
 #function to create a new square
 def create_square():
@@ -21,7 +21,7 @@ def create_square():
             side_length = input("What is the length/height of your square?\n-->")
 
             #tests if the number is below 0
-            if side_length <= 0:
+            if float(side_length) <= 0:
                 raise Exception("That is not a positive number!")
 
             #tests if the length is an integer
@@ -56,7 +56,7 @@ def create_rectangle():
             height = input("What is the height of your rectangle?\n-->")
 
             #tests if the numbers are below 0
-            if base <= 0 or height <= 0:
+            if float(base) <= 0 or float(height) <= 0:
                 raise Exception("That is not a positive number!")
 
             #tests if the lengths are floats/integers
@@ -98,7 +98,7 @@ def create_triangle():
             side3 = input("What is the side 3 length of your triangle?\n-->")
 
             #tests if the numbers are below 0
-            if base <= 0 or height <= 0 or side2 <= 0 or side3 <= 0:
+            if float(base) <= 0 or float(height) <= 0 or float(side2) <= 0 or float(side3) <= 0:
                 raise Exception("That is not a positive number!")
 
             #tests if the lengths are floats/integers
@@ -133,7 +133,7 @@ def create_circle():
             radius = input("What is the radius of your circle?\n-->")
 
             #tests if the numbers are below 0
-            if radius <= 0:
+            if float(radius) <= 0:
                 raise Exception("That is not a positive number!")
 
             #tests if the lengths are floats/integers
