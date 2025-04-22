@@ -13,20 +13,20 @@ class circle:
     #method for area
     def area(self):
         #calculate area
-        area = math.pi*(self.radius^2)
-        #print area
-        print(f"The radius of {self.name} is approximately {round(area, 2)}.")
+        area = math.pi*(self.radius**2)
+        #return area
+        return area
 
     #method for perimeter
     def perimeter(self):
         #calculate perimeter
         perimeter = 2*math.pi*self.radius
-        #print perimeter
-        print(f"The perimeter of {self.name} is approximately {round(perimeter, 2)}.")
+        #return perimeter
+        return perimeter
     
     #method to print attributes about self
     def __str__(self):
-        return f"Name: {self.name}\nRadius: {self.radius}"
+        return f"Name: {self.name}\nRadius: {self.radius}\nArea: {round(self.area(), 2)}\nPerimeter: {round(self.perimeter(), 2)}"
 
     #static method to print the formulas used
     def formulas():
@@ -63,19 +63,19 @@ class rectangle:
     def area(self):
         #calculate area
         area = self.length*self.height
-        #print area
-        print(f"The area of {self.name} is approximately {round(area, 2)}.")
+        #return area
+        return area
 
     #method for perimeter
     def perimeter(self):
         #calculate perimeter
         perimeter = (2 * self.length) + (2*self.height)
-        #print perimeter
-        print(f"The perimeter of {self.name} is approximately {round(perimeter, 2)}.")
+        #return perimeter
+        return perimeter
     
     #method to print attributes about self
     def __str__(self):
-        return f"Name: {self.name}\nLength: {self.length}\nHeight: {self.height}"
+        return f"Name: {self.name}\nLength: {self.length}\nHeight: {self.height}\nArea: {round(self.area(), 2)}\nPerimeter: {round(self.perimeter(), 2)}"
 
     #static method to print the formulas used
     def formulas():
@@ -111,20 +111,20 @@ class square(rectangle):
     #method for area
     def area(self):
         #calculate area
-        area = self.length^2
-        #print area
-        print(f"The area of {self.name} is approximately {round(area, 2)}.")
+        area = self.length**2
+        #return area
+        return area
     
     #method for perimeter
     def perimeter(self):
         #calculate perimeter
         perimeter = 4 * self.length
-        #print perimeter
-        print(f"The perimeter of {self.name} is approximately {round(perimeter, 2)}.")
+        #return perimeter
+        return perimeter
 
     #method to print attributes about self
     def __str__(self):
-        return f"Name: {self.name}\nEvery Side length: {self.length}"
+        return f"Name: {self.name}\nEvery Side length: {self.length}\nArea: {round(self.area(), 2)}\nPerimeter: {round(self.perimeter(), 2)}"
     
     #static method to print the formulas used
     def formulas():
@@ -163,19 +163,19 @@ class triangle:
     def area(self):
         #calculate area
         area = (self.height * self.base)/2
-        #print area
-        print(f"The area of {self.name} is approximately {round(area, 2)}.")
+        #return area
+        return area
 
     #method for perimeter
     def perimeter(self):
         #calculate perimeter
         perimeter = self.base + self.side2 + self.side3
-        #print perimeter
-        print(f"The perimeter of {self.name} is approximately {round(perimeter, 2)}.")
+        #return perimeter
+        return perimeter
     
     #method to print attributes about self
     def __str__(self):
-        return f"Name: {self.name}\nBase/Side 1 Length: {self.base}\nHeight: {self.height}\nSide 2 Length: {self.side2}\nSide 3 Length: {self.side3}"
+        return f"Name: {self.name}\nBase/Side 1 Length: {self.base}\nHeight: {self.height}\nSide 2 Length: {self.side2}\nSide 3 Length: {self.side3}\nArea: {round(self.area(), 2)}\nPerimeter: {round(self.perimeter(), 2)}"
 
     #static method to print the formulas used
     def formulas():

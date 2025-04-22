@@ -95,9 +95,15 @@ def main():
         #if user wants to print out formulas
         elif choice == "2":
             while True:
-                #choice to view different formulas
-                formula_choice = input("Type 1 to view formulas for square, type 2 to view formulas for rectangle, type 3 to view formulas for triangle, type 4 to view formulas for circle, and type 5 to exit.")
-                test = int(formula_choice)
+                try:
+                    #choice to view different formulas
+                    formula_choice = input("Type 1 to view formulas for square, \ntype 2 to view formulas for rectangle, \ntype 3 to view formulas for triangle, \ntype 4 to view formulas for circle, \nand type 5 to exit.\n-->")
+                    test = int(formula_choice)
+
+                #if the user doesn't type a number
+                except:
+                    print("Invalid input!")
+                    continue
 
                 #if user wants to print formulas for square
                 if formula_choice == "1":
@@ -127,7 +133,7 @@ def main():
         elif choice == "3":
             while True:
                 #choice to sort a specfic shape
-                sort_choice = input("Type 1 to sort squares, type 2 to sort rectangles, type 3 to sort triangles, type 4 to sort circles, ande type 5 to exit.")
+                sort_choice = input("Type 1 to sort squares, type 2 to sort rectangles, type 3 to sort triangles, type 4 to sort circles, ande type 5 to exit.\n-->")
 
                 #if the user wants to sort squares
                 if sort_choice == "1":
@@ -149,11 +155,15 @@ def main():
                 elif sort_choice == "5":
                     break
 
+                #if the user's input is invalid
+                else:
+                    print("Invalid input!")
+
         #if the user wants to see attributes for a shape
         elif choice == "4":
             while True:
                 #input for the name of the shape the user wants to view attributes for
-                shape_name = input("What is the name of the shape you want to see attributes for?(Or type exit to exit)(You can view all names of shapes in option 5 in the first choice)\n-->")
+                shape_name = input("What is the name of the shape you want to see attributes for?(Or type exit to exit)\n-->")
                 
                 #if the user wants to exit
                 if shape_name == "exit":
@@ -164,25 +174,25 @@ def main():
 
                 #checking if the name of the shape is in the squares list
                 for sq in squares:
-                    if shape_name.strip() == square.name.strip():
+                    if shape_name.strip() == sq.name.strip():
                         targetitem = sq
                         break
                 
                 #checking if the name of the shape is in the rectangles list
                 for rect in rectangles:
-                    if shape_name.strip() == rectangle.name.strip():
+                    if shape_name.strip() == rect.name.strip():
                         targetitem = rect
                         break
 
                 #checking if the name of the shape is in the triangles list
                 for tri in triangles:
-                    if shape_name.strip() == triangle.name.strip():
+                    if shape_name.strip() == tri.name.strip():
                         targetitem = tri
                         break
 
                 #checking if the name of the shape is in the circles list
                 for circ in circles:
-                    if shape_name.strip() == circle.name.strip():
+                    if shape_name.strip() == circ.name.strip():
                         targetitem = circ
                         break
 
@@ -216,7 +226,7 @@ def main():
             print("----------Triangles----------")
             print("\n")
             for tri in triangles:
-                print(triangle.name)
+                print(tri.name)
             print("\n")
             print("----------Circles----------")
             print("\n")
@@ -228,7 +238,7 @@ def main():
         elif choice == "6":
             while True:
                 #input for the name of the first shape the user wants to compare
-                shape_name = input("What is the name of the first shape you want to compare?(Or type exit to exit)(You can view all names of shapes in option 5 in the first choice)\n-->")
+                shape_name = input("What is the name of the first shape you want to compare?(Or type exit to exit)\n-->")
                 
                 #if the user wants to exit
                 if shape_name == "exit":
@@ -267,7 +277,7 @@ def main():
                     continue
 
                 #input for the name of the second shape the user wants to compare
-                shape_name2 = input("What is the name of the second shape you want to compare?(Or type exit to exit)(You can view all names of shapes in option 5 in the first choice)\n-->")
+                shape_name2 = input("What is the name of the second shape you want to compare?(Or type exit to exit)\n-->")
                 
                 #if the user wants to exit
                 if shape_name2 == "exit":

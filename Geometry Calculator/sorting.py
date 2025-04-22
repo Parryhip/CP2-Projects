@@ -12,12 +12,16 @@ def sort(list):
             areasorted = sorted(list, key=lambda item: item.perimeter())
 
             #print the title
-            print("-----------Sorted by Area-----------")
+            print("-----------Sorted by Area (least to greatest)-----------")
+            print("\n")
 
             #Iterate through every item in the sorted list
             for item in areasorted:
                 #print the square
                 print(item.name)
+
+            #white space
+            print("\n")
 
         #if the user wants to sort by perimeter
         elif sortby == "2":
@@ -25,9 +29,21 @@ def sort(list):
             perimetersorted = sorted(list, key=lambda item: item.perimeter())
 
             #print the title
-            print("-----------Sorted by Perimeter-----------")
+            print("-----------Sorted by Perimeter (least to greatest)-----------")
+            print("\n")
 
             #Iterate through every item in the sorted list
             for item in perimetersorted:
                 #print the item
                 print(item.name)
+
+            #white space
+            print("\n")
+        
+        #if the user wants to exit
+        elif sortby == "3":
+            break
+
+        #if the user's input is invalid
+        else:
+            print("Invalid input!")

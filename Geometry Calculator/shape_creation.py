@@ -36,7 +36,7 @@ def create_square():
         print("Square succesfully created!")
 
         #return the new square
-        return square(name, side_length, None)
+        return square(name, float(side_length), None)
     
 #function to make a new rectangle
 def create_rectangle():
@@ -72,7 +72,7 @@ def create_rectangle():
         print("Rectangle succesfully created!")
 
         #return the new rectangle
-        return rectangle(name, base, height)
+        return rectangle(name, float(base), float(height))
     
 #function to create a triangle
 def create_triangle():
@@ -116,7 +116,7 @@ def create_triangle():
         print("Triangle succesfully created!")
 
         #exit loop
-        return triangle(name, base, side2, side3, height)
+        return triangle(name, float(base), float(side2), float(side3), float(height))
     
 #function to create a new circle
 def create_circle():
@@ -148,4 +148,4 @@ def create_circle():
         print("Circle succesfully created!")
 
         #return new circle
-        return circle(name, radius)
+        return circle(name, float(radius))
