@@ -35,18 +35,18 @@ class circle:
 
     #method to compare areas of circles
     def compare_area(self, circle2):
-        if self.area > circle2.area:
+        if self.area() > circle2.area():
             print(f"{self.name} has the greater area!")
-        elif circle2.area > self.area:
+        elif circle2.area() > self.area():
             print(f"{circle2.name} has the greater area!")
         else:
             print(f"{self.name} and {circle2.name} have the same area!")
 
     #method to compare perimeters of circles
     def compare_perimeter(self, circle2):
-        if self.perimeter > circle2.perimeter:
+        if self.perimeter() > circle2.perimeter():
             print(f"{self.name} has the greater perimeter!")
-        elif circle2.perimeter > self.perimeter:
+        elif circle2.perimeter() > self.perimeter():
             print(f"{circle2.name} has the greater perimeter!")
         else:
             print(f"{self.name} and {circle2.name} have the same size of perimeter!")
@@ -84,18 +84,18 @@ class rectangle:
 
     #method to compare areas of rectangles
     def compare_area(self, rect2):
-        if self.area > rect2.area:
+        if self.area() > rect2.area():
             print(f"{self.name} has the greater area!")
-        elif rect2.area > self.area:
+        elif rect2.area() > self.area():
             print(f"{rect2.name} has the greater area!")
         else:
             print(f"{self.name} and {rect2.name} have the same size of area!")
 
     #method to compare perimeters of rectangles
     def compare_perimeter(self, rectangle2):
-        if self.perimeter > rectangle2.perimeter:
+        if self.perimeter() > rectangle2.perimeter():
             print(f"{self.name} has the greater perimeter!")
-        elif rectangle2.perimeter > self.perimeter:
+        elif rectangle2.perimeter() > self.perimeter():
             print(f"{rectangle2.name} has the greater perimeter!")
         else:
             print(f"{self.name} and {rectangle2.name} have the same size of perimeter!")
@@ -104,9 +104,9 @@ class rectangle:
 #subclass for square
 class square(rectangle):
     #initializing self attributes
-    def __init__(self, name, length):
+    def __init__(self, name, length, height):
         #inherits name and length from rectangle
-        super().__init__(name, length)
+        super().__init__(name, length, height)
     
     #method for area
     def area(self):
@@ -133,18 +133,18 @@ class square(rectangle):
 
     #method to compare areas of squares
     def compare_area(self, square2):
-        if self.area > square2.area:
+        if self.area() > square2.area():
             print(f"{self.name} has the greater area!")
-        elif square2.area > self.area:
+        elif square2.area() > self.area():
             print(f"{square2.name} has the greater area!")
         else:
             print(f"{self.name} and {square2.name} have the same size of area!")
 
     #method to compare perimeters of squares
     def compare_perimeter(self, square2):
-        if self.perimeter > square2.perimeter:
+        if self.perimeter() > square2.perimeter():
             print(f"{self.name} has the greater perimeter!")
-        elif square2.perimeter > self.perimeter:
+        elif square2.perimeter() > self.perimeter():
             print(f"{square2.name} has the greater perimeter!")
         else:
             print(f"{self.name} and {square2.name} have the same size of perimeter!")
@@ -184,18 +184,18 @@ class triangle:
     
     #method to compare areas of triangles
     def compare_area(self, triangle2):
-        if self.area > triangle2.area:
+        if self.area() > triangle2.area():
             print(f"{self.name} has the greater area!")
-        elif triangle2.area > self.area:
+        elif triangle2.area() > self.area():
             print(f"{triangle2.name} has the greater area!")
         else:
             print(f"{self.name} and {triangle2.name} have the same size of area!")
 
     #method to compare perimeters of triangles
     def compare_perimeter(self, triangle2):
-        if self.perimeter > triangle2.perimeter:
+        if self.perimeter() > triangle2.perimeter():
             print(f"{self.name} has the greater perimeter!")
-        elif triangle2.perimeter > self.perimeter:
+        elif triangle2.perimeter() > self.perimeter():
             print(f"{triangle2.name} has the greater perimeter!")
         else:
             print(f"{self.name} and {triangle2.name} have the same size of perimeter!")

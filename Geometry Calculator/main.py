@@ -85,7 +85,7 @@ def main():
                     circles.append(new_circle)
                 
                 #if the user wants to exit, do so
-                elif choice == "5":
+                elif shape_choice == "5":
                     break
 
                 #if the user's input is invalid, tell them
@@ -163,27 +163,27 @@ def main():
                 targetitem = None
 
                 #checking if the name of the shape is in the squares list
-                for square in squares:
+                for sq in squares:
                     if shape_name.strip() == square.name.strip():
-                        targetitem = square
+                        targetitem = sq
                         break
                 
                 #checking if the name of the shape is in the rectangles list
-                for rectangle in rectangles:
+                for rect in rectangles:
                     if shape_name.strip() == rectangle.name.strip():
-                        targetitem = rectangle
+                        targetitem = rect
                         break
 
                 #checking if the name of the shape is in the triangles list
-                for triangle in triangles:
+                for tri in triangles:
                     if shape_name.strip() == triangle.name.strip():
-                        targetitem = triangle
+                        targetitem = tri
                         break
 
                 #checking if the name of the shape is in the circles list
-                for circle in circles:
+                for circ in circles:
                     if shape_name.strip() == circle.name.strip():
-                        targetitem = circle
+                        targetitem = circ
                         break
 
                 #if the target item is still None, say that there is no shape with that name
@@ -205,23 +205,23 @@ def main():
             print("\n")
             print("----------Squares----------")
             print("\n")
-            for square in squares:
-                print(square.name)
+            for sq in squares:
+                print(sq.name)
             print("\n")
             print("----------Rectangles----------")
             print("\n")
-            for rectangle in rectangles:
-                print(rectangle.name)
+            for rect in rectangles:
+                print(rect.name)
             print("\n")
             print("----------Triangles----------")
             print("\n")
-            for triangle in triangles:
+            for tri in triangles:
                 print(triangle.name)
             print("\n")
             print("----------Circles----------")
             print("\n")
-            for circle in circles:
-                print(circle.name)
+            for circ in circles:
+                print(circ.name)
             print("\n")
 
         #if the user wants to compare two shapes
@@ -238,27 +238,27 @@ def main():
                 targetitem1 = None
 
                 #checking if the name of the shape is in the squares list
-                for square in squares:
-                    if shape_name.strip() == square.name.strip():
-                        targetitem1 = square
+                for sq in squares:
+                    if shape_name.strip() == sq.name.strip():
+                        targetitem1 = sq
                         break
                 
                 #checking if the name of the shape is in the rectangles list
-                for rectangle in rectangles:
-                    if shape_name.strip() == rectangle.name.strip():
-                        targetitem1 = rectangle
+                for rect in rectangles:
+                    if shape_name.strip() == rect.name.strip():
+                        targetitem1 = rect
                         break
 
                 #checking if the name of the shape is in the triangles list
-                for triangle in triangles:
-                    if shape_name.strip() == triangle.name.strip():
-                        targetitem1 = triangle
+                for tri in triangles:
+                    if shape_name.strip() == tri.name.strip():
+                        targetitem1 = tri
                         break
 
                 #checking if the name of the shape is in the circles list
-                for circle in circles:
-                    if shape_name.strip() == circle.name.strip():
-                        targetitem1 = circle
+                for circ in circles:
+                    if shape_name.strip() == circ.name.strip():
+                        targetitem1 = circ
                         break
 
                 #if the target item is still None, say that there is no shape with that name
@@ -277,27 +277,27 @@ def main():
                 targetitem2 = None
 
                 #checking if the name of the shape is in the squares list
-                for square in squares:
-                    if shape_name2.strip() == square.name.strip():
-                        targetitem2 = square
+                for sq in squares:
+                    if shape_name2.strip() == sq.name.strip():
+                        targetitem2 = sq
                         break
                 
                 #checking if the name of the shape is in the rectangles list
-                for rectangle in rectangles:
-                    if shape_name2.strip() == rectangle.name.strip():
-                        targetitem2 = rectangle
+                for rect in rectangles:
+                    if shape_name2.strip() == rect.name.strip():
+                        targetitem2 = rect
                         break
 
                 #checking if the name of the shape is in the triangles list
-                for triangle in triangles:
-                    if shape_name2.strip() == triangle.name.strip():
-                        targetitem2 = triangle
+                for tri in triangles:
+                    if shape_name2.strip() == tri.name.strip():
+                        targetitem2 = tri
                         break
 
                 #checking if the name of the shape is in the circles list
-                for circle in circles:
-                    if shape_name2.strip() == circle.name.strip():
-                        targetitem2 = circle
+                for circ in circles:
+                    if shape_name2.strip() == circ.name.strip():
+                        targetitem2 = circ
                         break
 
                 #if the target item is still None, say that there is no shape with that name
@@ -307,7 +307,7 @@ def main():
 
                 #compares area and perimeter
                 targetitem1.compare_area(targetitem2)
-                targetitem1.compare_area(targetitem2)
+                targetitem1.compare_perimeter(targetitem2)
                 
                 #exit
                 break

@@ -36,7 +36,7 @@ def create_square():
         print("Square succesfully created!")
 
         #return the new square
-        return square(name, side_length)
+        return square(name, side_length, None)
     
 #function to make a new rectangle
 def create_rectangle():
